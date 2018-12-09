@@ -1,233 +1,191 @@
-label
+@font-face {
+  font-family: 'lovelo-black';
+  src: url('../fonts/lovelo-black.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'lovelo-line-bold';
+  src: url('../fonts/lovelo-line-bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'open-sans';
+  src: url('../fonts/opensans-regular.ttf') format('truetype');
+}
+
+.lovelo-black-font
 {
-    margin: 0 8px !important;
+    font-family: 'lovelo-black', Arial, sans-serif;
 }
 
-#loading-animation .card-content
+.lovelo-line-bold-font
 {
-    display: none;
+    font-family: 'lovelo-line-bold', Arial, sans-serif;
 }
 
-.hvr-outline-in:before
+.open-sans-regular-font
 {
-    border: #00E676 solid 4px !important;
+    font-family: 'open-sans', Arial, sans-serif;
 }
 
-/* table layout*/
-.table-content
+body
 {
-    display: table;    
-    border-spacing: 8px 8px !important;
+    background-color: #FFF;
+    font-family: 'open-sans', Arial, sans-serif;
 }
 
-.table-row
+body .container-fluid
 {
-    display: table-row;    
+    min-height: calc(100vh - 92px);
 }
 
-.table-cell
+hr
 {
-    display: table-cell;
-    vertical-align: top; 
+    margin: 0 !important;
 }
 
-/* end of table layout */
-
-#surat-suara-viewport
+.font-16
 {
-    position: relative;
-    height: calc(100vh - 60px);
-    max-height: calc(100vh - 60px);
-    overflow: auto;
-}
-
-.surat-suara 
-{
-    margin-bottom: 24px;    
-}
-
-.surat-suara-content
-{
-    max-width: 1040px;    
-}
-
-.calon 
-{   
-    border: 1px solid #AAA; 
-    cursor: pointer;    
-    margin-bottom: 8px;
-    margin-top: 12px;
-}
-
-.checked
-{
-    visibility: hidden;
-    background-color: #b9f6ca;
-    padding: 4px;
-    border-radius: 2px;
-    font-size: 16px;
-    height: 30px;
-}
-
-/* hover */
-.calon:hover + .checked
-{
-    visibility: visible;
-}
-
-.calon:hover + .checked::after
-{
-    content: 'PILIH';
-}
-
-/* checked mark */
-.checked-mark
-{
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 32px;
-    visibility: hidden;
-    width: 0;
-    height: 0;    
-    border-top: 66px solid #00E676;
-    border-left: 66px solid transparent;
-}
-
-.checked-icon
-{
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    visibility: hidden;
-    font-size: 24px;
-}
-
-/* checked */
-.calon-input:checked + .card > .card-body > .checked-mark,
-.calon-input:checked + .card > .card-body > .checked-icon
-{
-    visibility: visible;    
-}
-
-/* hover uncheck */
-.calon-input:checked + .calon:hover + .checked
-{    
-    background-color: #ff8a80;
-}
-
-.calon-input:checked + .calon:hover + .checked::after
-{    
-    content: 'HAPUS PILIHAN';
-}
-
-.calon-input
-{
-    display: none;
-    position: absolute;
-}
-
-.nomor-calon
-{    
-    font-size: 28px;    
-}
-
-.nama-calon
-{
-    width: 236px;
-    padding: 8px;
-    max-height: 80px !important;
-    height: 80px !important;
-    vertical-align: middle;
-    line-height: normal; 
-    margin: 0;  
-}
-
-.nama-calon table
-{
-    table-layout: fixed;
-}
-
-.calon-ketua, .calon-wakil
-{
-    width: 112px;        
-    max-width: 112px;    
-    font-size: 12px;
-    word-wrap: break-word;
-    vertical-align: middle;
-}
-
-.calon-sendiri
-{
-    font-size: 16px;
-    word-wrap: break-word;
-    vertical-align: middle;
-}
-
-.foto-calon
-{    
-    height: 180px;
-    width: 236px;    
-}
-
-.foto-calon img 
-{
-    height: 180px;
-    width: 236px;
-}
-
-.sidebar
-{
-    height: calc(100vh - 60px);    
-}
-
-.btn-surat-suara
-{        
-    border-bottom: 1px solid #2E2E2E !important;
-    color: #FFF;
-}
-
-.btn-surat-suara:hover
-{
-    background-color: #FFEA00 !important;
-    color: #000 !important;  
-    border-bottom: 1px solid #FFEA00 !important;    
-}
-
-.nav-pills>li.active>a, 
-.nav-pills>li.active>a:hover, 
-.nav-pills>li.active>a:focus
-{
-    color: #000 !important;
-    background-color: #FFEA00 !important;
-}
-
-.btn-selesai-memilih
-{
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;    
-    color: #000;    
-    line-height: 48px;    
-}
-
-.btn-selesai-memilih:hover
-{
-    background-color: #00E676 !important;
-}
-
-.pilih-ribbon
-{
-    width: 0;
-    height: 0;
-    border-radius: 0 2px 0 0;
-    border-top: 100px solid #00E676;
-    border-left: 100px solid transparent;
-}
-
-.lead 
-{
-    color: #000 !important;
     font-size: 16px !important;
+}
+
+.card
+{
+    background: #fff;
+    border-radius: 12px;
+    /*border: 1px solid rgba(0, 0, 0, .24);*/        
+    height: 360px;        
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-link:hover
+{
+    text-decoration: none;
+}
+
+.card-image
+{
+    width: 100%;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image img
+{
+    border-radius: 12px 12px 0 0;
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.card-title
+{
+    padding: 8px;
+    font-weight: bolder;
+    width: 100%;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.card-desc
+{
+    padding: 8px;
+    width: 100%;
+    color: #888;
+    max-height: 96px;
+    overflow: hidden;
+}
+
+.card-label
+{
+    padding: 8px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #EEE;
+}
+
+.label
+{
+    display: inline-block;
+    background-color: #DDD;
+    color: #000;
+    border-radius: 12px;
+    text-align: center;
+    padding: 4px 12px;
+    font-size: 12px;
+}
+
+.contribution-label
+{
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, .72);    
+    padding: 2px 8px;
+    color: #FFF;
+    z-index: 999;
+}
+
+.special-link, .special-link:hover, .special-link:focus
+{
+    color: yellow !important;
+}
+
+.white
+{
+    color: #FFF !important;
+}
+
+.jumbotron
+{    
+    padding-left: 24px;
+    padding-right: 24px;
+    background: -webkit-linear-gradient(left top, blue , red); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, blue , red); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, blue , red); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, blue , red); /* Standard syntax (must be last) */
+}
+
+.jumbotron-desc
+{
+    padding: 8px 12px;
+    display: inline-block;
+    border-radius: 12px;    
+}
+
+.blur
+{
+    background-color: rgba(255, 255, 255, 0.24);
+}
+
+.social-media
+{
+    display: inline-block;
+}
+
+.soc-med-icon
+{
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    border-radius: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+footer
+{
+    height: 72px;
+    text-align: center;
+    color: #888;
+    padding: 8px;    
 }
