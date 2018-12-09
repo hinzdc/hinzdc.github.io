@@ -1,0 +1,233 @@
+label
+{
+    margin: 0 8px !important;
+}
+
+#loading-animation .card-content
+{
+    display: none;
+}
+
+.hvr-outline-in:before
+{
+    border: #00E676 solid 4px !important;
+}
+
+/* table layout*/
+.table-content
+{
+    display: table;    
+    border-spacing: 8px 8px !important;
+}
+
+.table-row
+{
+    display: table-row;    
+}
+
+.table-cell
+{
+    display: table-cell;
+    vertical-align: top; 
+}
+
+/* end of table layout */
+
+#surat-suara-viewport
+{
+    position: relative;
+    height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
+    overflow: auto;
+}
+
+.surat-suara 
+{
+    margin-bottom: 24px;    
+}
+
+.surat-suara-content
+{
+    max-width: 1040px;    
+}
+
+.calon 
+{   
+    border: 1px solid #AAA; 
+    cursor: pointer;    
+    margin-bottom: 8px;
+    margin-top: 12px;
+}
+
+.checked
+{
+    visibility: hidden;
+    background-color: #b9f6ca;
+    padding: 4px;
+    border-radius: 2px;
+    font-size: 16px;
+    height: 30px;
+}
+
+/* hover */
+.calon:hover + .checked
+{
+    visibility: visible;
+}
+
+.calon:hover + .checked::after
+{
+    content: 'PILIH';
+}
+
+/* checked mark */
+.checked-mark
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 32px;
+    visibility: hidden;
+    width: 0;
+    height: 0;    
+    border-top: 66px solid #00E676;
+    border-left: 66px solid transparent;
+}
+
+.checked-icon
+{
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    visibility: hidden;
+    font-size: 24px;
+}
+
+/* checked */
+.calon-input:checked + .card > .card-body > .checked-mark,
+.calon-input:checked + .card > .card-body > .checked-icon
+{
+    visibility: visible;    
+}
+
+/* hover uncheck */
+.calon-input:checked + .calon:hover + .checked
+{    
+    background-color: #ff8a80;
+}
+
+.calon-input:checked + .calon:hover + .checked::after
+{    
+    content: 'HAPUS PILIHAN';
+}
+
+.calon-input
+{
+    display: none;
+    position: absolute;
+}
+
+.nomor-calon
+{    
+    font-size: 28px;    
+}
+
+.nama-calon
+{
+    width: 236px;
+    padding: 8px;
+    max-height: 80px !important;
+    height: 80px !important;
+    vertical-align: middle;
+    line-height: normal; 
+    margin: 0;  
+}
+
+.nama-calon table
+{
+    table-layout: fixed;
+}
+
+.calon-ketua, .calon-wakil
+{
+    width: 112px;        
+    max-width: 112px;    
+    font-size: 12px;
+    word-wrap: break-word;
+    vertical-align: middle;
+}
+
+.calon-sendiri
+{
+    font-size: 16px;
+    word-wrap: break-word;
+    vertical-align: middle;
+}
+
+.foto-calon
+{    
+    height: 180px;
+    width: 236px;    
+}
+
+.foto-calon img 
+{
+    height: 180px;
+    width: 236px;
+}
+
+.sidebar
+{
+    height: calc(100vh - 60px);    
+}
+
+.btn-surat-suara
+{        
+    border-bottom: 1px solid #2E2E2E !important;
+    color: #FFF;
+}
+
+.btn-surat-suara:hover
+{
+    background-color: #FFEA00 !important;
+    color: #000 !important;  
+    border-bottom: 1px solid #FFEA00 !important;    
+}
+
+.nav-pills>li.active>a, 
+.nav-pills>li.active>a:hover, 
+.nav-pills>li.active>a:focus
+{
+    color: #000 !important;
+    background-color: #FFEA00 !important;
+}
+
+.btn-selesai-memilih
+{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;    
+    color: #000;    
+    line-height: 48px;    
+}
+
+.btn-selesai-memilih:hover
+{
+    background-color: #00E676 !important;
+}
+
+.pilih-ribbon
+{
+    width: 0;
+    height: 0;
+    border-radius: 0 2px 0 0;
+    border-top: 100px solid #00E676;
+    border-left: 100px solid transparent;
+}
+
+.lead 
+{
+    color: #000 !important;
+    font-size: 16px !important;
+}
