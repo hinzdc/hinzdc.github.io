@@ -1,0 +1,26 @@
+$path = 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings'
+
+Remove-Item -Path $path -Force | Out-Null
+
+Remove-ItemProperty -Path $path -Name 'PauseFeatureUpdatesStartTime'
+Remove-ItemProperty -Path $path -Name 'PauseQualityUpdatesStartTime'
+Remove-ItemProperty -Path $path -Name 'PauseUpdatesExpiryTime'
+Remove-ItemProperty -Path $path -Name 'PauseFeatureUpdatesEndTime'
+Remove-ItemProperty -Path $path -Name 'PauseQualityUpdatesEndTime'
+
+New-Item -Path $path -Force | Out-Null
+
+New-ItemProperty -Path $path -Name 'PauseFeatureUpdatesStartTime' -Value '2018-01-26T11:11:11Z'
+New-ItemProperty -Path $path -Name 'PauseQualityUpdatesStartTime' -Value '2018-01-26T11:11:11Z'
+New-ItemProperty -Path $path -Name 'PauseUpdatesExpiryTime' -Value '2099-11-11T16:38:59Z'
+New-ItemProperty -Path $path -Name 'PauseFeatureUpdatesEndTime' -Value '2099-11-11T11:11:11Z'
+New-ItemProperty -Path $path -Name 'PauseQualityUpdatesEndTime' -Value '2099-11-11T11:11:11Z'
+
+Write-host ""
+Write-host ""
+Write-host -fore red "========================================================="
+Write-host -background Green -fore black "  Windows Update telah di Pause hingga tahun 11/11/2099  "
+Write-host -fore red "========================================================="
+Write-host ""
+Write-host -background black " // HINZDC // AB COMPUTER - ISTANA BEC LANTAI 1 BLOK W15 "
+Write-host ""
