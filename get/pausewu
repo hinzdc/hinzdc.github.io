@@ -1,4 +1,4 @@
-$path = 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings'
+Ôªø$path = 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings'
 
 New-Item -Path $path -Force | Out-Null
 
@@ -8,16 +8,18 @@ Set-ItemProperty -Path $path -Name 'PauseUpdatesExpiryTime' -Value '2099-11-11T1
 Set-ItemProperty -Path $path -Name 'PauseFeatureUpdatesEndTime' -Value '2099-11-11T11:11:11Z'
 Set-ItemProperty -Path $path -Name 'PauseQualityUpdatesEndTime' -Value '2099-11-11T11:11:11Z'
 
+Write-host "---------------------------------------------------------"
 Write-Host ""
-Write-host "  €€                                    €€"
-Write-host "  €€±±€€€€€ €€ €€€€€€±± €€€€€€€   €€€€±±€€ ±±€€€€€"
-Write-host "  €€     €€          €€    ±±€€   €€    €€ €€"
-Write-host "  €€     €€ €€ €€    €€ ±±€€      €€    €€ €€"
-Write-host "  €€     €€ €€ €€    €€ €€€€€€€   €€€€€€€€ ±±€€€€€"
-Write-host ""
+Write-Host " ‚ñà‚ñà                                    ‚ñà‚ñà"
+Write-Host " ‚ñà‚ñà‚ñí‚ñí‚ñà‚ñà‚ñà‚ñà‚ñà ‚ñà‚ñà ‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ñí‚ñí ‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà   ‚ñà‚ñà‚ñà‚ñà‚ñí‚ñí‚ñà‚ñà ‚ñí‚ñí‚ñà‚ñà‚ñà‚ñà‚ñà"
+Write-Host " ‚ñà‚ñà     ‚ñà‚ñà          ‚ñà‚ñà    ‚ñí‚ñí‚ñà‚ñà   ‚ñà‚ñà    ‚ñà‚ñà ‚ñà‚ñà"
+Write-Host " ‚ñà‚ñà     ‚ñà‚ñà ‚ñà‚ñà ‚ñà‚ñà    ‚ñà‚ñà ‚ñí‚ñí‚ñà‚ñà      ‚ñà‚ñà    ‚ñà‚ñà ‚ñà‚ñà"
+Write-Host " ‚ñà‚ñà     ‚ñà‚ñà ‚ñà‚ñà ‚ñà‚ñà    ‚ñà‚ñà ‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà   ‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà ‚ñí‚ñí‚ñà‚ñà‚ñà‚ñà‚ñà"
+Write-Host ""
 Write-host "========================================================="
-Write-host -background Green -fore black "  Windows Update telah di Pause hingga tahun 11/11/2099  "
+Write-host -background Green -fore white "  Windows Update telah di Pause hingga tahun 11/11/2099  "
 Write-host "========================================================="
 Write-host ""
 Write-host -background blue " // HINZDC // AB COMPUTER - ISTANA BEC LANTAI 1 BLOK W15 "
 Write-host ""
+Write-host "---------------------------------------------------------"
