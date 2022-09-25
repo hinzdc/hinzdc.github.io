@@ -1,4 +1,4 @@
-$path = 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings'
+﻿$path = 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings'
 
 New-Item -Path $path -Force | Out-Null
 
