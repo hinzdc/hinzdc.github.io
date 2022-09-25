@@ -10,12 +10,6 @@ Set-ItemProperty -Path $path -Name 'PauseQualityUpdatesEndTime' -Value '2099-11-
 
 Write-host "---------------------------------------------------------"
 Write-Host ""
-Write-Host " ██                                    ██"
-Write-Host " ██▒▒█████ ██ ██████▒▒ ███████   ████▒▒██ ▒▒█████"
-Write-Host " ██     ██          ██    ▒▒██   ██    ██ ██"
-Write-Host " ██     ██ ██ ██    ██ ▒▒██      ██    ██ ██"
-Write-Host " ██     ██ ██ ██    ██ ███████   ████████ ▒▒█████"
-Write-Host ""
 Write-host "========================================================="
 Write-host -background Green -fore white "  Windows Update telah di Pause hingga tahun 11/11/2099  "
 Write-host "========================================================="
