@@ -3,7 +3,7 @@
 
 $DownloadURL = 'https://www.dropbox.com/s/1l9mkrduw6oc6d1/OfficeScrub.bat?dl=1'
 
-$FilePath = "$env:TEMP\OfficeScrub.bat"
+$FilePath = "$env:TEMP\OfficeScrubC2R.bat"
 
 try {
     Invoke-WebRequest -Uri $DownloadURL -UseBasicParsing -OutFile $FilePath
