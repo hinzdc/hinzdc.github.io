@@ -8,10 +8,31 @@ Set-ItemProperty -Path $path -Name 'PauseUpdatesExpiryTime' -Value '2099-11-11T1
 Set-ItemProperty -Path $path -Name 'PauseFeatureUpdatesEndTime' -Value '2099-11-11T11:11:11Z'
 Set-ItemProperty -Path $path -Name 'PauseQualityUpdatesEndTime' -Value '2099-11-11T11:11:11Z'
 
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization' -Name 'DODownloadMode' -Value '0'
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching' -Name 'SearchOrderConfig' -Value '0'
+Set-Service -Name "spooler" -Status stopped -StartupType Nanual
+
+$objSID = New-Object System.Security.Principal.SecurityIdentifier "S-1-1-0"
+$EveryOne = $objSID.Translate( [System.Security.Principal.NTAccount]).Value
+
+takeown /F "$env:WinDIR\System32\MusNotification.exe"
+icacls "$env:WinDIR\System32\MusNotification.exe" /deny "$($EveryOne):(X)"
+takeown /F "$env:WinDIR\System32\MusNotificationUx.exe"
+icacls "$env:WinDIR\System32\MusNotificationUx.exe" /deny "$($EveryOne):(X)"
+
+Write-host " /$$       /$$                           /$$          "      
+Write-host "| $$      |__/                          | $$           "     
+Write-host "| $$$$$$$  /$$ /$$$$$$$  /$$$$$$$$  /$$$$$$$  /$$$$$$$  "    
+Write-host "| $$__  $$| $$| $$__  $$|____ /$$/ /$$__  $$ /$$_____/   "   
+Write-host "| $$  \ $$| $$| $$  \ $$   /$$$$/ | $$  | $$| $$          "  
+Write-host "| $$  | $$| $$| $$  | $$  /$$__/  | $$  | $$| $$           " 
+Write-host "| $$  | $$| $$| $$  | $$ /$$$$$$$$|  $$$$$$$|  $$$$$$$      "
+Write-host "|__/  |__/|__/|__/  |__/|________/ \_______/ \_______/ "
+Write-host ""
 Write-host "---------------------------------------------------------"
 Write-Host ""
 Write-host "========================================================="
-Write-host -background Green -fore white "  Windows Update telah di Pause hingga tahun 11/11/2099  "
+Write-host -background Green -fore black "  Windows Update telah di Pause hingga tahun 11/11/2099  "
 Write-host "========================================================="
 Write-host ""
 Write-host -background blue " // HINZDC // AB COMPUTER - ISTANA BEC LANTAI 1 BLOK W15 "
