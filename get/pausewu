@@ -11,6 +11,8 @@ Set-ItemProperty -Path $path -Name 'PauseQualityUpdatesEndTime' -Value '2099-11-
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching' -Name 'SearchOrderConfig' -Value '0'
 Set-Service -Name "wuauserv" -StartupType manual
 
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /f /v ExcludeWUDriversInQualityUpdate /t REG_DWORD /d 1
+
 $objSID = New-Object System.Security.Principal.SecurityIdentifier "S-1-1-0"
 $EveryOne = $objSID.Translate( [System.Security.Principal.NTAccount]).Value
 
@@ -19,12 +21,17 @@ icacls "$env:WinDIR\System32\MusNotification.exe" /deny "$($EveryOne):(X)"
 takeown /F "$env:WinDIR\System32\MusNotificationUx.exe"
 icacls "$env:WinDIR\System32\MusNotificationUx.exe" /deny "$($EveryOne):(X)"
 
-Write-host "---------------------------------------------------------"
+
+Write-host "========================================================="
 Write-Host ""
-Write-host "========================================================="
+Write-Host ""
+Write-Host ""
+Write-host "---------------------------------------------------------"
 Write-host -background Green -fore black "  Windows Update telah di Pause hingga tahun 11/11/2099  "
-Write-host "========================================================="
+Write-host "---------------------------------------------------------"
 Write-host ""
 Write-host -background blue " // HINZDC // AB COMPUTER - ISTANA BEC LANTAI 1 BLOK W15 "
 Write-host ""
-Write-host "---------------------------------------------------------"
+Write-Host ""
+Write-Host ""
+Write-host "========================================================="
