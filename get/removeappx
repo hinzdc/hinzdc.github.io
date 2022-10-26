@@ -6,7 +6,18 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"cd '$pwd'; & '$PSCommandPath';`"";
     exit;
 }
-
+Write-Host "----------------------------------------------------------------------"
+Write-Host ">"
+Write-Host ">"
+Write-Host ">"
+Write-Host ">"
+Write-Host ">"
+Write-Host ">"
+Write-Host ">"
+Write-Host ">"
+Write-Host ">"
+Write-Host ">"
+Write-Host "----------------------------------------------------------------------"
 # Xbox apps
 Write-Host "Removing Microsoft.XboxIdentityProvider.."
 Get-AppxPackage -AllUsers *Microsoft.XboxIdentityProvider* | Remove-AppxPackage
@@ -70,8 +81,8 @@ Get-AppxPackage -AllUsers *Microsoft.YourPhone* | Remove-AppxPackage
 
 Write-Host "Removing Microsoft.windowscommunicationsapps.."
 Get-AppxPackage -AllUsers *microsoft.windowscommunicationsapps* | Remove-AppxPackage
-Write-Host "Removing Microsoft.WindowsCamera.."
-#Get-AppxPackage -AllUsers *Microsoft.WindowsCamera* | Remove-AppxPackage
+@ Write-Host "Removing Microsoft.WindowsCamera.."
+# Get-AppxPackage -AllUsers *Microsoft.WindowsCamera* | Remove-AppxPackage
 
 Write-Host "Removing Microsoft.OneConnect.."
 Get-AppxPackage -AllUsers *Microsoft.OneConnect* | Remove-AppxPackage
@@ -79,11 +90,11 @@ Write-Host "Removing Microsoft.Messaging.."
 Get-AppxPackage -AllUsers *Microsoft.Messaging* | Remove-AppxPackage
 
 Write-Host "Removing Microsoft.BingNews.."
-#Get-AppxPackage -AllUsers *Microsoft.BingNews* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *Microsoft.BingNews* | Remove-AppxPackage
 Write-Host "Removing Microsoft.Todos.."
 Get-AppxPackage -AllUsers *Microsoft.Todos* | Remove-AppxPackage
 
-Write-Host "Removing MicrosoftTeams"
+Write-Host "Removing MicrosoftTeams.."
 Get-AppxPackage -AllUsers *MicrosoftTeams* | Remove-AppxPackage
 Write-Host "Removing Microsoft.PowerAutomateDesktop.."
 Get-AppxPackage -AllUsers *Microsoft.PowerAutomateDesktop* | Remove-AppxPackage
@@ -98,6 +109,6 @@ Get-AppxPackage -AllUsers *MicrosoftCorporationII.QuickAssist* | Remove-AppxPack
 # Yes, you can fully remove her now!
 Write-Host "Removing Microsoft.Cortana"
 Get-AppxPackage -AllUsers *Microsoft.549981C3F5F10* | Remove-AppxPackage
-
-Write-Host "Completely..."
+Write-Host "----------------------------------------------------------------------"
+Write-Host "Removing Appx Completely..."
 pause
