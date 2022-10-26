@@ -81,7 +81,7 @@ Get-AppxPackage -AllUsers *Microsoft.YourPhone* | Remove-AppxPackage
 
 Write-Host "Removing Microsoft.windowscommunicationsapps.."
 Get-AppxPackage -AllUsers *microsoft.windowscommunicationsapps* | Remove-AppxPackage
-@ Write-Host "Removing Microsoft.WindowsCamera.."
+# Write-Host "Removing Microsoft.WindowsCamera.."
 # Get-AppxPackage -AllUsers *Microsoft.WindowsCamera* | Remove-AppxPackage
 
 Write-Host "Removing Microsoft.OneConnect.."
