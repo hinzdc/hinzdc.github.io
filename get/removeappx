@@ -6,6 +6,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"cd '$pwd'; & '$PSCommandPath';`"";
     exit;
 }
+cls
 Write-Host "----------------------------------------------------------------------"
 Write-Host ">"
 Write-Host ">"
@@ -110,5 +111,8 @@ Get-AppxPackage -AllUsers *MicrosoftCorporationII.QuickAssist* | Remove-AppxPack
 Write-Host "Removing Microsoft.Cortana"
 Get-AppxPackage -AllUsers *Microsoft.549981C3F5F10* | Remove-AppxPackage
 Write-Host "----------------------------------------------------------------------"
-Write-Host "Removing Appx Completely..."
+Write-Host -f green "Removing Appx Completely..."
+Write-Host "----------------------------------------------------------------------"
+Write-Host
+Write-Host
 pause
