@@ -8,58 +8,96 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 }
 
 # Xbox apps
+Write-Host "Removing Microsoft.XboxIdentityProvider.."
 Get-AppxPackage -AllUsers *Microsoft.XboxIdentityProvider* | Remove-AppxPackage
+Write-Host "Removing Microsoft.XboxSpeechToTextOverlay.."
 Get-AppxPackage -AllUsers *Microsoft.XboxSpeechToTextOverlay* | Remove-AppxPackage
+Write-Host "Removing Microsoft.XboxGamingOverlay.."
 Get-AppxPackage -AllUsers *Microsoft.XboxGamingOverlay* | Remove-AppxPackage
+Write-Host "Removing Microsoft.XboxGameOverlay.."
 Get-AppxPackage -AllUsers *Microsoft.XboxGameOverlay* | Remove-AppxPackage
+Write-Host "Removing Microsoft.XboxApp.."
 Get-AppxPackage -AllUsers *Microsoft.XboxApp* | Remove-AppxPackage
+Write-Host "Removing Microsoft.Xbox.TCUI.."
 Get-AppxPackage -AllUsers *Microsoft.Xbox.TCUI* | Remove-AppxPackage
+Write-Host "Removing Microsoft.GamingApp.."
 Get-AppxPackage -AllUsers *Microsoft.GamingApp* | Remove-AppxPackage
 
 # Other unwanted apps
+Write-Host "Removing Microsoft.BingWeather"
 Get-AppxPackage -AllUsers *Microsoft.BingWeather* | Remove-AppxPackage
+Write-Host "Removing Microsoft.GetHelp.."
 Get-AppxPackage -AllUsers *Microsoft.GetHelp* | Remove-AppxPackage
+Write-Host "Removing Microsoft.Getstarted.."
 Get-AppxPackage -AllUsers *Microsoft.Getstarted* | Remove-AppxPackage
 
+Write-Host "Removing Microsoft.Microsoft3DViewer.."
 Get-AppxPackage -AllUsers *Microsoft.Microsoft3DViewer* | Remove-AppxPackage
+Write-Host "Removing Microsoft.MicrosoftOfficeHub.."
 Get-AppxPackage -AllUsers *Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage
+Write-Host "Removing Microsoft.MicrosoftSolitaireCollection"
 Get-AppxPackage -AllUsers *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage
+Write-Host "Removing Microsoft.MixedReality.Portal.."
 Get-AppxPackage -AllUsers *Microsoft.MixedReality.Portal* | Remove-AppxPackage
 
-#Get-AppxPackage -AllUsers *Microsoft.MSPaint* | Remove-AppxPackage
+# Write-Host "Removing Microsoft.MSPaint.."
+# Get-AppxPackage -AllUsers *Microsoft.MSPaint* | Remove-AppxPackage
+Write-Host "Removing Microsoft.Office.OneNote.."
 Get-AppxPackage -AllUsers *Microsoft.Office.OneNote* | Remove-AppxPackage
+Write-Host "Removing Microsoft.People.."
 Get-AppxPackage -AllUsers *Microsoft.People* | Remove-AppxPackage
 
+Write-Host "Removing Microsoft.Wallet.."
 Get-AppxPackage -AllUsers *Microsoft.Wallet* | Remove-AppxPackage
+Write-Host "Removing Microsoft.WindowsFeedbackHub.."
 Get-AppxPackage -AllUsers *Microsoft.WindowsFeedbackHub* | Remove-AppxPackage
 
+Write-Host "Removing Microsoft.WindowsMaps.."
 Get-AppxPackage -AllUsers *Microsoft.WindowsMaps* | Remove-AppxPackage
+# Write-Host "Removing Microsoft.WindowsSoundRecorder.."
 # Get-AppxPackage -AllUsers *Microsoft.WindowsSoundRecorder* | Remove-AppxPackage
+Write-Host "Removing Microsoft.YourPhone.."
 Get-AppxPackage -AllUsers *Microsoft.YourPhone* | Remove-AppxPackage
+Write-Host "Removing Microsoft.ZuneMusic.."
 #Get-AppxPackage -AllUsers *Microsoft.ZuneMusic* | Remove-AppxPackage
 
-#Get-AppxPackage -AllUsers *Microsoft.ZuneVideo* | Remove-AppxPackage
+# Write-Host "Removing Microsoft.ZuneVideo.."
+# Get-AppxPackage -AllUsers *Microsoft.ZuneVideo* | Remove-AppxPackage
+Write-Host "Removing Microsoft.SkypeApp.."
 Get-AppxPackage -AllUsers *Microsoft.SkypeApp* | Remove-AppxPackage
+Write-Host "Removing Microsoft.YourPhone.."
 Get-AppxPackage -AllUsers *Microsoft.YourPhone* | Remove-AppxPackage
 
+Write-Host "Removing Microsoft.windowscommunicationsapps.."
 Get-AppxPackage -AllUsers *microsoft.windowscommunicationsapps* | Remove-AppxPackage
+Write-Host "Removing Microsoft.WindowsCamera.."
 #Get-AppxPackage -AllUsers *Microsoft.WindowsCamera* | Remove-AppxPackage
 
+Write-Host "Removing Microsoft.OneConnect.."
 Get-AppxPackage -AllUsers *Microsoft.OneConnect* | Remove-AppxPackage
+Write-Host "Removing Microsoft.Messaging.."
 Get-AppxPackage -AllUsers *Microsoft.Messaging* | Remove-AppxPackage
 
+Write-Host "Removing Microsoft.BingNews.."
 #Get-AppxPackage -AllUsers *Microsoft.BingNews* | Remove-AppxPackage
+Write-Host "Removing Microsoft.Todos.."
 Get-AppxPackage -AllUsers *Microsoft.Todos* | Remove-AppxPackage
 
+Write-Host "Removing MicrosoftTeams"
 Get-AppxPackage -AllUsers *MicrosoftTeams* | Remove-AppxPackage
+Write-Host "Removing Microsoft.PowerAutomateDesktop.."
 Get-AppxPackage -AllUsers *Microsoft.PowerAutomateDesktop* | Remove-AppxPackage
-
+Write-Host "Removing Clipchamp.Clipchamp.."
 Get-AppxPackage -AllUsers *Clipchamp.Clipchamp* | Remove-AppxPackage
+Write-Host "Removing MicrosoftCorporationII.MicrosoftFamily.."
 Get-AppxPackage -AllUsers *MicrosoftCorporationII.MicrosoftFamily* | Remove-AppxPackage
+Write-Host "Removing MicrosoftCorporationII.QuickAssist.."
 Get-AppxPackage -AllUsers *MicrosoftCorporationII.QuickAssist* | Remove-AppxPackage
 
 # Uninstalls cortana on Windows 10 build 2004+
 # Yes, you can fully remove her now!
+Write-Host "Removing Microsoft.Cortana"
 Get-AppxPackage -AllUsers *Microsoft.549981C3F5F10* | Remove-AppxPackage
 
+Write-Host "Completely..."
 pause
