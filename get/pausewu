@@ -8,13 +8,15 @@ Set-ItemProperty -Path $path -Name 'PauseUpdatesExpiryTime' -Value '2099-11-11T1
 Set-ItemProperty -Path $path -Name 'PauseFeatureUpdatesEndTime' -Value '2099-11-11T11:11:11Z'
 Set-ItemProperty -Path $path -Name 'PauseQualityUpdatesEndTime' -Value '2099-11-11T11:11:11Z'
 
-Write-Host -fore green " Set wuauserv service to manual.."
+Write-host "---------------------------------------------------------"
+Write-Host -fore green "Set wuauserv service to manual.."
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching' -Name 'SearchOrderConfig' -Value '0'
 Set-Service -Name "wuauserv" -StartupType manual
 net stop wuauserv
 
-Write-Host -fore green " Exclude Driver From Windows Quality Update"
+Write-Host -fore green "Exclude Driver From Windows Quality Update"
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /f /v ExcludeWUDriversInQualityUpdate /t REG_DWORD /d 1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\office\16.0\common\officeupdate" /f /v EnableAutomaticUpdates /t REG_DWORD /d 0
 
 $objSID = New-Object System.Security.Principal.SecurityIdentifier "S-1-1-0"
 $EveryOne = $objSID.Translate( [System.Security.Principal.NTAccount]).Value
