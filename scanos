@@ -1,34 +1,6 @@
-param([switch]$Elevated)
+Start-Process PowerShell -ArgumentList "Write-Host 'Scan Disk...' -ForegroundColor Green; chkdsk /scan c:; 
+        Write-Host '`nScan Corrupted File System...' -ForegroundColor Green; sfc /scannow;
+        Write-Host '`nRestore Healthy...' -ForegroundColor Green; DISM /Online /Cleanup-Image /Restorehealth; 
+        Write-Host '`n2nd Scan Corrupted File System...' -ForegroundColor Green; sfc /scannow; 
+        Read-Host '`nPress Enter to Continue'" -verb runas
 
-function Test-Admin {
-    $currentUser = New-Object Security.Principal.WindowsPrincipal $([Security.Principal.WindowsIdentity]::GetCurrent())
-    $currentUser.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
-}
-
-if ((Test-Admin) -eq $false)  {
-    if ($elevated) {
-        # tried to elevate, did not work, aborting
-    } else {
-        Start-Process powershell.exe -Verb RunAs -ArgumentList ('-noprofile -noexit -file "{0}" -elevated' -f ($myinvocation.MyCommand.Definition))
-    }
-    exit
-}
-echo -----------------------------------------------------------------
-echo Scan Disk...
-chkdsk /scan c:
-echo -----------------------------------------------------------------
-echo.
-echo -----------------------------------------------------------------
-echo Scan Corrupted File System...
-SFC /scannow
-echo -----------------------------------------------------------------
-echo.
-echo Restore Healthy...
-Dism /online /cleanup-image /restorehealth
-echo -----------------------------------------------------------------
-echo.
-echo Procces Completely...
-echo Silakan Restart Terlebih Dahulu...!!
-echo.
-pause
-exit
