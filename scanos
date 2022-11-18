@@ -1,34 +1,5 @@
-@echo off
-cd /d "%~dp0"
-if "[%1]" == "[49127c4b-02dc-482e-ac4f-ec4d659b7547]" goto :start
-REG QUERY HKU\S-1-5-19\Environment >NUL 2>&1 && goto :start
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 
-set command="""%~f0""" 49127c4b-02dc-482e-ac4f-ec4d659b7547
-SETLOCAL ENABLEDELAYEDEXPANSION
-set "command=!command:'=''!"
-
-IF "%~1"=="-suite" GOTO :start
-echo.
-echo          ENABLING ADMINISTRATOR RIGHTS...
-echo.
-echo			  please wait...
-
-powershell -NoProfile Start-Process -FilePath '%COMSPEC%' ^
--ArgumentList '/c """!command!"""' -Verb RunAs 2>NUL
-
-IF %ERRORLEVEL% GTR 0 (
-    echo.
-    echo =============================================================
-    echo This script needs to be run as administrator.
-    echo =============================================================
-    echo.
-pause
-)
-SETLOCAL DISABLEDELAYEDEXPANSION
-goto :EOF
-::===============================================================================================================
-
-:start
 echo -----------------------------------------------------------------
 echo Scan Disk...
 chkdsk /scan c:
@@ -40,7 +11,7 @@ SFC /scannow
 echo -----------------------------------------------------------------
 echo.
 echo Restore Healthy...
-Dism /online/cleanup-image /restorehealth
+Dism /online /cleanup-image /restorehealth
 echo -----------------------------------------------------------------
 echo.
 echo Procces Completely...
