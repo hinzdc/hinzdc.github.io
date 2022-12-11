@@ -1,0 +1,19 @@
+
+# Activator Windows & Office
+irm hinzdc.github.io/get/active | iex
+
+# Remove Appx not Used
+irm hinzdc.github.io/get/removeappx | iex
+
+# Remove or Disable Windows Defender
+irm hinzdc.github.io/get/removedefender | iex
+
+# check corrupted file system & restore health
+irm hinzdc.github.io/scanos | iex
+
+# Office Scrub
+irm hinzdc.github.io/get/officescrub | iex
+irm hinzdc.github.io/get/officescrubv1 | iex
+
+# Pause Windows Update to 2099
+irm hinzdc.github.io/get/pausewu | iex
