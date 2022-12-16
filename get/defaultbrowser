@@ -1,6 +1,6 @@
 
 
-$DownloadURL = 'https://raw.githubusercontent.com/hinzdc/hinzdc.github.io/main/get/changechrome.vbs'
+$DownloadURL = 'https://github.com/hinzdc/hinzdc.github.io/blob/main/get/changechrome.vbs'
 
 $FilePath = "$env:TEMP\setdefaultbrowser.vbs"
 
