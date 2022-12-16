@@ -12,14 +12,7 @@ try {
 }
 
 if (Test-Path $FilePath) {
-    Start-Process $FilePath -Wait
+    cmd.exe /c cscript //NoLogo C:\Windows\Temp\setdefaultbrowser.vbs
     $item = Get-Item -LiteralPath $FilePath
     $item.Delete()
 }
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
