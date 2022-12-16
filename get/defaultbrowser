@@ -13,6 +13,4 @@ try {
 
 if (Test-Path $FilePath) {
     cmd.exe /c cscript //NoLogo C:\Windows\Temp\setdefaultbrowser.vbs
-    $item = Get-Item -LiteralPath $FilePath
-    $item.Delete()
 }
