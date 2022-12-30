@@ -1,0 +1,16 @@
+Write-Host ----------------------------------------
+Write-Host Installing WinRAR
+winget install -e --id RARLab.WinRAR
+Write-Host Installing Aimp
+winget install -e --id AIMP.AIMP
+Write-Host Installing Google Chrome
+winget install -e --id Google.Chrome
+Write-Host Installing Mozilla Firefox
+winget install -e --id Mozilla.Firefox
+Write-Host Installing Zoom
+winget install -e --id Zoom.Zoom
+Write-Host Installing VLC Player
+winget install -e --id VideoLAN.VLC
+Write-Host Installing WhatsApp
+winget install -e --id WhatsApp.WhatsApp
+Write-Host Completed..
