@@ -17,3 +17,6 @@ irm hinzdc.github.io/get/officescrubv1 | iex
 
 # Pause Windows Update to 2099
 irm hinzdc.github.io/get/pausewu | iex
+
+# Install Aplikasi Standard
+irm hinzdc.github.io/get/appx | iex
