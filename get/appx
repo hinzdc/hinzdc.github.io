@@ -1,24 +1,34 @@
+# Privilege Escalation
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"cd '$pwd'; & '$PSCommandPath';`"";
+    exit;
+}
+cls
+Write-Host --------------------------------------------------------------------------------
+Write-Host -f black -b white " AB COMPUTER - ISTANA BEC BANDUNG LANTAI 1 BLOK W15 "
+Write-Host -f black -b white "     JALAN PURNAWARMAN NO. 13-15 BABAKAN CIAMIS     "
+Write-Host -f black -b white " SERVICE - SPAREPART - UPGRADE - MAINTENANCE - JUAL "
 Write-Host --------------------------------------------------------------------------------
 Write-Host -f green Installing WinRAR
-Write-Host ---------------------------
 winget install -e --id RARLab.WinRAR
+Write-Host ---------------------------
 Write-Host -f green Installing Aimp
-Write-Host ---------------------------
 winget install -e --id AIMP.AIMP
+Write-Host ---------------------------
 Write-Host -f green Installing Google Chrome
-Write-Host ---------------------------
 winget install -e --id Google.Chrome
+Write-Host ---------------------------
 Write-Host -f green Installing Mozilla Firefox
-Write-Host ---------------------------
 winget install -e --id Mozilla.Firefox
+Write-Host ---------------------------
 Write-Host -f green Installing Zoom
-Write-Host ---------------------------
 winget install -e --id Zoom.Zoom
+Write-Host ---------------------------
 Write-Host -f green Installing VLC Player
-Write-Host ---------------------------
 winget install -e --id VideoLAN.VLC
-Write-Host -f green Installing WhatsApp
 Write-Host ---------------------------
+Write-Host -f green Installing WhatsApp
 winget install -e --id WhatsApp.WhatsApp
+Write-Host ---------------------------
 Write-Host -f green Completed..
 Write-Host --------------------------------------------------------------------------------
