@@ -1,3 +1,13 @@
+$ASCIIText = @"
+
+  ██                                    ██
+  ██▒▒█████ ██ ██████▒▒ ███████   ████▒▒██ ▒▒█████
+  ██     ██          ██    ▒▒██   ██    ██ ██
+  ██     ██ ██ ██    ██ ▒▒██      ██    ██ ██
+  ██     ██ ██ ██    ██ ███████   ████████ ▒▒█████
+
+"@
+Write-Host $ASCIIText -ForegroundColor red
 
 # Activator Windows & Office
 irm hinzdc.github.io/get/active | iex
