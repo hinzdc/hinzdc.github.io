@@ -12,7 +12,7 @@ try {
 }
 
 if (Test-Path $FilePath) {
-    PowerShell.exe -File -$FilePath
+    PowerShell.exe -File $FilePath
     $item = Get-Item -LiteralPath $FilePath
     $item.Delete()
 }
