@@ -3,6 +3,21 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"cd '$pwd'; & '$PSCommandPath';`"";
     exit;
 }
+$DownloadURL = 'https://raw.githubusercontent.com/asheroto/winget-installer/master/winget-install.ps1'
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+$FilePath = "$env:TEMP\winget.ps1"
+
+try {
+    Invoke-WebRequest -Uri $DownloadURL -UseBasicParsing -OutFile $FilePath
+} catch {
+    Write-Error $_
+	Return
+}
+
+if (Test-Path $FilePath) {
+    PowerShell.exe -File $FilePath
+    $item = Get-Item -LiteralPath $FilePath
+    $item.Delete()
 cls
 Write-Host --------------------------------------------------------------------------------
 Write-Host -f black -b white " AB COMPUTER - ISTANA BEC BANDUNG LANTAI 1 BLOK W15 "
