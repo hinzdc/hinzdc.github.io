@@ -18,6 +18,7 @@ if (Test-Path $FilePath) {
     PowerShell.exe -File $FilePath
     $item = Get-Item -LiteralPath $FilePath
     $item.Delete()
+}
 cls
 Write-Host --------------------------------------------------------------------------------
 Write-Host -f black -b white " AB COMPUTER - ISTANA BEC BANDUNG LANTAI 1 BLOK W15 "
