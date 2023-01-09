@@ -1,7 +1,5 @@
 # Enable TLSv1.2 for compatibility with older clients
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
-reg add "HKLM\SOFTWARE\Policies\Microsoft\office\16.0\common\officeupdate" /f /v EnableAutomaticUpdates /t REG_DWORD /d 0
-cls
 $DownloadURL = 'https://raw.githubusercontent.com/asheroto/winget-installer/master/winget-install.ps1'
 
 $FilePath = "$env:TEMP\winget.ps1"
@@ -14,7 +12,7 @@ try {
 }
 
 if (Test-Path $FilePath) {
-    Start-Process $FilePath -Wait
+    Start-Process PowerShell -File -$FilePath -Wait
     $item = Get-Item -LiteralPath $FilePath
     $item.Delete()
 }
