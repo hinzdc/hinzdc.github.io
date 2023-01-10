@@ -136,7 +136,7 @@ section("Installation complete!")
 section("Please restart your computer to complete the installation.")
 Sleep 4
 cls
-winget install -e --accept-source-agreements --accept-package-agreements --silent | Out-Host
+
 Write-Host --------------------------------------------------------------------------------
 Write-Host -f black -b white " AB COMPUTER - ISTANA BEC BANDUNG LANTAI 1 BLOK W15 "
 Write-Host -f black -b white "     JALAN PURNAWARMAN NO. 13-15 BABAKAN CIAMIS     "
@@ -159,6 +159,9 @@ winget install -e --id Zoom.Zoom --accept-package-agreements --accept-source-agr
 Write-Host ---------------------------
 Write-Host -f green Installing VLC Player
 winget install -e --id VideoLAN.VLC --accept-package-agreements --accept-source-agreements
+Write-Host ---------------------------
+Write-Host -f green Installing Adobe Reader DC
+winget install -e --id Adobe.Acrobat.Reader.32-bit --accept-package-agreements --accept-source-agreements
 Write-Host ---------------------------
 Write-Host -f green Installing WhatsApp
 winget install -e --id WhatsApp.WhatsApp --accept-package-agreements --accept-source-agreements
