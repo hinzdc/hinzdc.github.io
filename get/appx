@@ -136,6 +136,7 @@ section("Installation complete!")
 section("Please restart your computer to complete the installation.")
 Sleep 4
 cls
+winget install -e --accept-source-agreements --accept-package-agreements --silent | Out-Host
 Write-Host --------------------------------------------------------------------------------
 Write-Host -f black -b white " AB COMPUTER - ISTANA BEC BANDUNG LANTAI 1 BLOK W15 "
 Write-Host -f black -b white "     JALAN PURNAWARMAN NO. 13-15 BABAKAN CIAMIS     "
