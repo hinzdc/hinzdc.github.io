@@ -60,9 +60,9 @@ function section($text) {
         .DESCRIPTION
         Prints a section divider for easy reading of the output.
     #>
-	Write-Output -f red "-----------------------------------"
-	Write-Output -f green "# $text"
-	Write-Output -f red "-----------------------------------"
+	Write-Host -f red "-----------------------------------"
+	Write-Host -f green "# $text"
+	Write-Host -f red "-----------------------------------"
 }
 
 # Add AppxPackage and silently continue on error
