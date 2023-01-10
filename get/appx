@@ -60,9 +60,9 @@ function section($text) {
         .DESCRIPTION
         Prints a section divider for easy reading of the output.
     #>
-	Write-Host "**************************************************"
-	Write-Host "* $text"
-	Write-Host "**************************************************"
+	Write-Host "*****************************************************"
+	Write-Host "// $text"
+	Write-Host "*****************************************************"
 }
 
 # Add AppxPackage and silently continue on error
@@ -143,25 +143,25 @@ Write-Host -f black -b white "     JALAN PURNAWARMAN NO. 13-15 BABAKAN CIAMIS   
 Write-Host -f black -b white " SERVICE - SPAREPART - UPGRADE - MAINTENANCE - JUAL "
 Write-Host --------------------------------------------------------------------------------
 Write-Host -f green Installing WinRAR
-winget install -e --id RARLab.WinRAR
+winget install -e --id RARLab.WinRAR --accept-package-agreements --accept-source-agreements
 Write-Host ---------------------------
 Write-Host -f green Installing Aimp
-winget install -e --id AIMP.AIMP
+winget install -e --id AIMP.AIMP --accept-package-agreements --accept-source-agreements
 Write-Host ---------------------------
 Write-Host -f green Installing Google Chrome
-winget install -e --id Google.Chrome
+winget install -e --id Google.Chrome --accept-package-agreements --accept-source-agreements
 Write-Host ---------------------------
 Write-Host -f green Installing Mozilla Firefox
-winget install -e --id Mozilla.Firefox
+winget install -e --id Mozilla.Firefox --accept-package-agreements --accept-source-agreements
 Write-Host ---------------------------
 Write-Host -f green Installing Zoom
-winget install -e --id Zoom.Zoom
+winget install -e --id Zoom.Zoom --accept-package-agreements --accept-source-agreements
 Write-Host ---------------------------
 Write-Host -f green Installing VLC Player
-winget install -e --id VideoLAN.VLC
+winget install -e --id VideoLAN.VLC --accept-package-agreements --accept-source-agreements
 Write-Host ---------------------------
 Write-Host -f green Installing WhatsApp
-winget install -e --id WhatsApp.WhatsApp
+winget install -e --id WhatsApp.WhatsApp --accept-package-agreements --accept-source-agreements
 Write-Host ---------------------------
 Write-Host -f green Completed..
 Write-Host --------------------------------------------------------------------------------
