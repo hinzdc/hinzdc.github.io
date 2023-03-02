@@ -1,11 +1,11 @@
 # Enable TLSv1.2 for compatibility with older clients
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
 
-# sources https://github.com/abbodi1406/WHD/blob/master/scripts/OfficeScrubber_9.7z
 
-$DownloadURL = 'https://www.dropbox.com/s/480vtvz7lzpnjxf/officescrubv9.bat?dl=1'
 
-$FilePath = "$env:TEMP\OfficeScrub.bat"
+$DownloadURL = 'https://raw.githubusercontent.com/abbodi1406/BatUtil/master/OfficeScrubber/OfficeScrubber.cmd'
+
+$FilePath = "$env:TEMP\OfficeScruber.bat"
 
 try {
     Invoke-WebRequest -Uri $DownloadURL -UseBasicParsing -OutFile $FilePath
