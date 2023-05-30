@@ -4,7 +4,7 @@ New-Item -ItemType Directory -Path "C:\Windows\Temp\DefenderRemover"
 Add-MpPreference -ExclusionPath "C:\Windows\Temp\DefenderRemover"
 $DownloadURL = 'https://raw.githubusercontent.com/hinzdc/hinzdc.github.io/main/get/DefenderRemover.bat'
 
-$FilePath = "$env:TEMP\DefenderRemover\DefenderRemover.bat"
+$FilePath = "$env:C:\Windows\temp\DefenderRemover\DefenderRemover.bat"
 
 try {
     Invoke-WebRequest -Uri $DownloadURL -UseBasicParsing -OutFile $FilePath
