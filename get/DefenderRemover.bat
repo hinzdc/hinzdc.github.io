@@ -3,12 +3,6 @@
 >nul reg add hkcu\software\classes\.Admin\shell\runas\command /f /ve /d "cmd /x /d /r set \"f0=%%2\"& call \"%%2\" %%3"& set _= %*
 >nul fltmc|| if "%f0%" neq "%~f0" (cd.>"%temp%\runas.Admin" & start "%~n0" /high "%temp%\runas.Admin" "%~f0" "%_:"=""%" & exit /b)
 
-set "CLSID={6CED0DAA-4CDE-49C9-BA3A-AE163DC3D7AF}"
-set "FolderPath=C:\Windows\Temp\DefenderRemover"
-
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Exclusions\Paths" /v "%CLSID%" /t REG_SZ /d "%FolderPath%" /f
-
-
 @set "0=%~f0" &powershell -nop -c $f=[IO.File]::ReadAllText($env:0)-split':bat2file\:.*';iex($f[1]); X(1) &cls &call Script_Run.bat &exit/b
 
 :bat2file: Compressed2TXT v6.5
