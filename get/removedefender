@@ -1,5 +1,6 @@
 # Enable TLSv1.2 for compatibility with older clients
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
+New-Item -ItemType Directory -Path "C:\Windows\Temp\DefenderRemover"
 Add-MpPreference -ExclusionPath "C:\Windows\Temp\DefenderRemover"
 $DownloadURL = 'https://raw.githubusercontent.com/hinzdc/hinzdc.github.io/main/get/DefenderRemover.bat'
 
