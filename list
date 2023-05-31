@@ -1,32 +1,36 @@
-$ASCIIText = @"
-
-  ██                                    ██
-  ██▒▒█████ ██ ██████▒▒ ███████   ████▒▒██ ▒▒█████
-  ██     ██          ██    ▒▒██   ██    ██ ██
-  ██     ██ ██ ██    ██ ▒▒██      ██    ██ ██
-  ██     ██ ██ ██    ██ ███████   ████████ ▒▒█████
-
-"@
-Write-Host $ASCIIText -ForegroundColor red
-
-# Activator Windows & Office
+write-host "HINZDC"
+------------------------------------------------------------------
+Buka powershell (admin) / Terminal (admin) atau dengan cara klik kanan logo windows
+lalu pilih Powershell (admin) / Terminal (Admin)
+------------------------------------------------------------------
+# Activator Windows & Office Manual
 irm hinzdc.github.io/get/active | iex
 
-# Remove Appx not Used
+# Activator Windows & Office Otomatis Active
+irm hinzdc.github.io/get/activeauto | iex
+
+# Activator Windows Permanent Digital License
+irm hinzdc.github.io/get/activewindows | iex
+
+# Activator Office 2010, 2013, 2016, 2019, 2021 KMS Online
+irm hinzdc.github.io/get/activeoffice | iex
+------------------------------------------------------------------
+# Remove Appx not Used / Remove Aplikasi Bawaan Tidak Berguna
 irm hinzdc.github.io/get/removeappx | iex
 
-# Remove or Disable Windows Defender
+# Install Aplikasi Standard Otomatis
+irm hinzdc.github.io/get/appx | iex
+
+# Remove or Disable Windows Defender (Disable dulu defender sebelum memasukan perintah ini)
 irm hinzdc.github.io/get/removedefender | iex
 
-# check corrupted file system & restore health
+# Fix corrupted file system & restore health
 irm hinzdc.github.io/scanos | iex
 
-# Office Scrub
+# Office Scrub / Uninstal dan Force Remove
 irm hinzdc.github.io/get/officescrub | iex
-irm hinzdc.github.io/get/officescrubv1 | iex
+irm hinzdc.github.io/get/officescrubber | iex
 
-# Pause Windows Update to 2099
+# Pause Windows Update Sampai Tahun 2099
 irm hinzdc.github.io/get/pausewu | iex
 
-# Install Aplikasi Standard
-irm hinzdc.github.io/get/appx | iex
