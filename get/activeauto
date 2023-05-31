@@ -2,4 +2,3 @@
 reg add "HKLM\SOFTWARE\Policies\Microsoft\office\16.0\common\officeupdate" /f /v EnableAutomaticUpdates /t REG_DWORD /d 0
 cls
 & ([ScriptBlock]::Create((irm https://massgrave.dev/get))) /HWID /KMS-Office /KMS-ActAndRenewalTask
-pause
