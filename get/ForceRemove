@@ -1,44 +1,116 @@
-# Tampilkan menu pilihan
-Write-Host " FORCE REMOVE FILE OR FOLDER " -BackgroundColor Red -ForegroundColor White
-Write-Host "Pilihan:"
-Write-Host "1. Force Remove File"
-Write-Host "2. Force Remove Folder"
-$choice = Read-Host "Masukkan nomor pilihan (1/2):"
+param([switch]$Elevated)
 
-# Memeriksa pilihan pengguna
+function Test-Admin {
+    $currentUser = New-Object Security.Principal.WindowsPrincipal $([Security.Principal.WindowsIdentity]::GetCurrent())
+    $currentUser.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+}
+
+if ((Test-Admin) -eq $false)  {
+    if ($elevated) {
+        # tried to elevate, did not work, aborting
+    } else {
+        Start-Process powershell.exe -Verb RunAs -ArgumentList ('-noprofile -noexit -file "{0}" -elevated' -f ($myinvocation.MyCommand.Definition))
+    }
+    exit
+}
+
+clear
+# Tampilkan dialog pilihan
+Write-Host ""
+Write-Host "                             " -BackgroundColor DarkRed
+Write-Host " FORCE REMOVE FILE OR FOLDER " -BackgroundColor DarkRed -ForegroundColor White
+Write-Host "          HINZDC.XYZ         " -BackgroundColor DarkRed -ForegroundColor White
+Write-Host "                             " -BackgroundColor DarkRed
+Write-Host "-----------------------------------------"
+Write-Host ""
+# Pilihan untuk menghapus file
+Write-Host " [1] Force Remove File"
+
+# Pilihan untuk menghapus folder
+Write-Host " [2] Force Remove Folder"
+Write-Host " [3] Exit"
+Write-Host ""
+Write-Host "-----------------------------------------"
+# Pilihan pengguna
+$choice = Read-Host "Masukkan Nomor Pilihan (1/2)"
+
+# Periksa pilihan pengguna
 if ($choice -eq "1") {
     # Pilihan untuk menghapus file
     $fileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $fileDialog.Title = "Pilih file yang akan dihapus"
     $fileDialog.InitialDirectory = [System.IO.Directory]::GetCurrentDirectory()
+
     $result = $fileDialog.ShowDialog()
-    
+
     if ($result -eq "OK") {
+        # Periksa apakah file ada
         $path = $fileDialog.FileName
         if (Test-Path $path -PathType Leaf) {
-            Remove-Item -Path $path -Force
-            Write-Host "File berhasil dihapus." -ForegroundColor Green
+            # Tampilkan dialog konfirmasi
+            $confirm = Read-Host "Apakah Anda yakin ingin menghapus file $path? (Y/N)"
+
+            if ($confirm -eq "Y") {
+                Write-Host " PLEASE WAIT.. " -ForegroundColor Yellow
+                # Hapus file
+                Remove-Item -Path $path -Force
+
+                # Tampilkan pesan berhasil
+                Write-Host ""
+                Write-Host "-----------------------------------------"
+                Write-Host "File berhasil dihapus." -ForegroundColor Green
+                Write-Host "-----------------------------------------"
+                Write-Host ""
+                Write-Host ""
+                Write-Host ""
+                Write-Host ""
+            }
         } else {
-            Write-Host "File tidak ditemukan." -ForegroundColor Red
+            # Tampilkan pesan kesalahan
+            Write-Host "-----------------------------------------"
+            Write-Host "File $path tidak ditemukan." -ForegroundColor Red
         }
     }
-}
-elseif ($choice -eq "2") {
+} elseif ($choice -eq "2") {
     # Pilihan untuk menghapus folder
     $folderDialog = New-Object System.Windows.Forms.FolderBrowserDialog
     $folderDialog.Description = "Pilih folder yang akan dihapus"
+
     $result = $folderDialog.ShowDialog()
-    
+
     if ($result -eq "OK") {
+        # Periksa apakah folder ada
         $path = $folderDialog.SelectedPath
         if (Test-Path $path -PathType Container) {
-            Remove-Item -Path $path -Recurse -Force
-            Write-Host "Folder dan isinya berhasil dihapus." -ForegroundColor Green
+            # Tampilkan dialog konfirmasi
+            $confirm = Read-Host "Apakah Anda yakin ingin menghapus folder $path dan isinya? (Y/N)"
+
+            if ($confirm -eq "Y") {
+                Write-Host " PLEASE WAIT.. " -ForegroundColor Yellow
+                # Hapus folder
+                Remove-Item -Path $path -Recurse -Force
+
+                # Tampilkan pesan berhasil
+                Write-Host ""
+                Write-Host "-----------------------------------------"
+                Write-Host "Folder dan isinya berhasil dihapus." -ForegroundColor Green
+                Write-Host "-----------------------------------------"
+                Write-Host ""
+                Write-Host ""
+                Write-Host ""
+                Write-Host ""
+            }
         } else {
-            Write-Host "Folder tidak ditemukan." -ForegroundColor Red
+            # Tampilkan pesan kesalahan
+            Write-Host "Folder $path tidak ditemukan." -ForegroundColor Red
         }
     }
-}
-else {
+} elseif ($choice -eq "3") {
+    exit
+} elseif ($choice -eq "0") {
+    Remove-Item -Path "C:\Windows\Temp" -Recurse -Force
+    Remove-Item -Path "$env:USERPROFILE\AppData\Local\Temp" -Recurse -Force
+} else {
+    # Tampilkan pesan kesalahan
     Write-Host "Pilihan tidak valid. Harap masukkan 1 atau 2." -ForegroundColor Red
 }
