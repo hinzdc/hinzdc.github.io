@@ -1,36 +1,49 @@
-write-host "HINZDC"
-------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------
 Buka powershell (admin) / Terminal (admin) atau dengan cara klik kanan logo windows
 lalu pilih Powershell (admin) / Terminal (Admin)
-------------------------------------------------------------------
+kemudian copy text di bawah ini dari irm sampai iex lalu paste di powershell lalu tekan enter
+-------------------------------------------------------------------------------------
 # Activator Windows & Office Manual
-irm hinzdc.github.io/get/active | iex
+irm hinzdc.xyz/get/active | iex
 
-# Activator Windows & Office Otomatis Active
-irm hinzdc.github.io/get/activeauto | iex
+# Activator Windows & Office Otomatis Active Permanent
+irm hinzdc.xyz/get/activeauto | iex
 
 # Activator Windows Permanent Digital License
-irm hinzdc.github.io/get/activewindows | iex
+irm hinzdc.xyz/get/activewindows | iex
 
-# Activator Office 2010, 2013, 2016, 2019, 2021 KMS Online
-irm hinzdc.github.io/get/activeoffice | iex
+# Activator Office 2010, 2013, 2016, 2019, 2021 - KMS Online
+irm hinzdc.xyz/get/activeofficekms | iex
+
+# Activator Office 2010, 2013, 2016, 2019, 2021 - ohook Permanent
+irm hinzdc.xyz/get/activeofficehook | iex
+
+# Activator Windows sampai tahun 2038 - KMS38
+irm hinzdc.xyz/get/activewindowskms38 | iex
+
+# Activator IDM
+irm hinzdc.xyz/get/activeidm | iex
 ------------------------------------------------------------------
+# Force Remove - Hapus Paksa File Dan Folder Yang Sulit Di Hapus
+irm hinzdc.xyz/get/ForceRemove | iex
+
 # Remove Appx not Used / Remove Aplikasi Bawaan Tidak Berguna
-irm hinzdc.github.io/get/removeappx | iex
+irm hinzdc.xyz/get/removeappx | iex
 
 # Install Aplikasi Standard Otomatis
-irm hinzdc.github.io/get/appx | iex
+irm hinzdc.xyz/get/appx | iex
 
 # Remove or Disable Windows Defender (Disable dulu defender sebelum memasukan perintah ini)
-irm hinzdc.github.io/get/removedefender | iex
+irm hinzdc.xyz/get/removedefender | iex
 
 # Fix corrupted file system & restore health
-irm hinzdc.github.io/scanos | iex
+irm hinzdc.xyz/get/fixos | iex
 
 # Office Scrub / Uninstal dan Force Remove
-irm hinzdc.github.io/get/officescrub | iex
-irm hinzdc.github.io/get/officescrubber | iex
+irm hinzdc.xyz/get/officescrub | iex
+irm hinzdc.xyz/get/officescrubber | iex
 
 # Pause Windows Update Sampai Tahun 2099
-irm hinzdc.github.io/get/pausewu | iex
+irm hinzdc.xyz/get/pausewu | iex
 
