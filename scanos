@@ -1,6 +1,0 @@
-Start-Process PowerShell -ArgumentList "Write-Host 'Scan Disk...' -ForegroundColor Green; chkdsk /scan c:; 
-        Write-Host '`nScan Corrupted File System...' -ForegroundColor Green; sfc /scannow;
-        Write-Host '`nRestore Healthy...' -ForegroundColor Green; DISM /Online /Cleanup-Image /Restorehealth; 
-        Write-Host '`n2nd Scan Corrupted File System...' -ForegroundColor Green; sfc /scannow; 
-        Read-Host '`nPress Enter to Continue'" -verb runas
-

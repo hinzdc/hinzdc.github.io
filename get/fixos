@@ -1,0 +1,62 @@
+param([switch]$Elevated)
+
+function Test-Admin {
+    $currentUser = New-Object Security.Principal.WindowsPrincipal $([Security.Principal.WindowsIdentity]::GetCurrent())
+    $currentUser.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+}
+
+if ((Test-Admin) -eq $false)  {
+    if ($elevated) {
+        # tried to elevate, did not work, aborting
+    } else {
+        Start-Process powershell.exe -Verb RunAs -ArgumentList ('-noprofile -noexit -file "{0}" -elevated' -f ($myinvocation.MyCommand.Definition))
+    }
+    exit
+}
+
+clear
+Write-Host ""
+Write-Host "------------------------------------------------------------------------------------"
+Write-Host " RUN CHKDSK TO CHECK ERROR DISK" -ForegroundColor Green
+Write-Host " SCAN DISK.." -ForegroundColor Green
+Start-Sleep 2
+Write-Host "------------------------------------------------------------------------------------"
+Invoke-Expression "chkdsk /scan c:"
+Write-Host "------------------------------------------------------------------------------------"
+
+# Run sfc /scannow to scan and repair system files
+Write-Host " RUN SFC TO SCAN AND REPAIR SYSTEM FILES." -ForegroundColor Green
+Write-Host " SCAN CORRRUPTED FILES SYSTEM..." -ForegroundColor Green
+Start-Sleep 2
+Write-Host "------------------------------------------------------------------------------------"
+Write-Host " System File Checker will repair missing or corrupted system files." -ForegroundColor Yellow
+Write-Host " This will take 10-15 minutes or more.." -ForegroundColor Yellow
+Write-Host ""
+Write-Host " If SFC could not fix something, then run the command again to see if it may be able" -ForegroundColor Yellow
+Write-Host " to the next time. Sometimes it may take running the sfc /scannow command 3 times" -ForegroundColor Yellow
+Write-Host " restarting the PC after each time to completely fix everything that it's able to." -ForegroundColor Yellow
+Write-Host "------------------------------------------------------------------------------------"
+Invoke-Expression "sfc /scannow"
+Write-Host "------------------------------------------------------------------------------------"
+
+# Run DISM to restore the Windows image
+Write-Host " RUNNING DISM TO RESTORE THE WINDOWS IMAGE." -ForegroundColor Green
+Write-Host " RESTORE HEALTHY.." -ForegroundColor Green
+Write-Host "------------------------------------------------------------------------------------"
+Write-Host "  Dism uses Windows Update to provide the files required to fix corruption." -ForegroundColor Yellow
+Write-Host "  This will take 5-15 minutes or more.." -ForegroundColor Yellow
+Write-Host "------------------------------------------------------------------------------------"
+Invoke-Expression "DISM /Online /Cleanup-Image /Restorehealth"
+Write-Host "------------------------------------------------------------------------------------"
+
+# Run sfc /scannow to scan and repair system files
+Write-Host " 2ND SCAN CORRRUPTED FILES SYSTEM..." -ForegroundColor Green
+Write-Host "------------------------------------------------------------------------------------"
+Invoke-Expression "sfc /scannow"
+Write-Host "------------------------------------------------------------------------------------"
+
+Write-Host " The DISM and sfc scans have been completed. Please restart Windows and check the results." -ForegroundColor Green
+Write-Host ""
+
+# Pause to allow the user to view the output
+Read-Host " Press Enter to exit"
