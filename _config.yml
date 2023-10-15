@@ -1,3 +1,39 @@
 ---
 permalink: /404.html
 ---
+#################################
+# --- Web Analytics Section --- #
+#################################
+
+# Fill in your Google Analytics tag ID (or "Measurement ID") to track your website usage
+#gtag: "G-411644594"
+
+# Fill in your Cloudflare Analytics beacon token to track your website using Cloudflare Analytics
+cloudflare_analytics: "7ced4f6b0b5948d6ad1df55808e28ffe"
+
+# Google Tag Manager ID
+gtm: "GTM-N9JDDRP7"
+
+# Matomo (aka Piwik) Web statistics
+# Uncomment the following section to enable Matomo. The opt-out parameter controls
+# whether or not you want to allow users to opt out of tracking.
+#matomo:
+#  site_id: "9"
+#  uri: "demo.wiki.pro"
+#  opt-out: true
+
+# Google Universal Analytics ID -- deprecated
+# As of July 2023 this is no longer supported by Google! If you are still using `google_analytics`,
+# you should switch to using the `gtag` field above instead.
+google_analytics: "UA-102753693-1"
+
+# Exclude these files from production site
+exclude:
+  - CHANGELOG.md
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - screenshot.png
+  - docs/
