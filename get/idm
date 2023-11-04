@@ -1,17 +1,19 @@
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-
+cls
 # Tentukan URL unduhan IDM
 $idmDownloadUrl = "https://www.internetdownloadmanager.com/download.html"
 
 # Unduh halaman unduhan IDM
 Write-Host ""
-Write-Host "                             " -BackgroundColor DarkRed
-Write-Host "  IDM DOWNLOAD + ACTIVATION  " -BackgroundColor DarkRed -ForegroundColor White
-Write-Host "          HINZDC.XYZ         " -BackgroundColor DarkRed -ForegroundColor White
-Write-Host "                             " -BackgroundColor DarkRed
-Write-Host "-----------------------------------------"
 Write-Host ""
+Write-Host ""
+Write-Host ""
+Write-Host "                                                 " -BackgroundColor DarkRed
+Write-Host "            IDM DOWNLOAD + ACTIVATION            " -BackgroundColor DarkRed -ForegroundColor White
+Write-Host "                    HINZDC.XYZ                   " -BackgroundColor DarkRed -ForegroundColor White
+Write-Host "                                                 " -BackgroundColor DarkRed
+Write-Host "-----------------------------------------"
 Write-Host "Mengunduh halaman unduhan IDM..."
 Write-Host "-----------------------------------------"
 $pageContent = Invoke-WebRequest -Uri $idmDownloadUrl
@@ -36,6 +38,7 @@ Write-Host "Instalasi IDM selesai."
 Remove-Item -Path $downloadPath
 
 Write-Host "Start Activation IDM."
+Write-Host "-----------------------------------------"
 Start-Sleep -Seconds 5
 & ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
 reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 1 /f
