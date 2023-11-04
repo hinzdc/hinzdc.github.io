@@ -1,12 +1,20 @@
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-Start-Process -FilePath "winget" -ArgumentList "install", "-e", "--id", "Tonec.InternetDownloadManager"
+# Membuat pekerjaan (job) untuk menjalankan winget
+$command = { winget install -e --id Tonec.InternetDownloadManager }
+$job = Start-Job -ScriptBlock $command
 
-# Dapatkan ID proses
-$ProcessId = (Get-Process -Name "winget").Id
+# Menunggu hingga pekerjaan selesai
+Wait-Job $job
 
-# Tunggu hingga proses selesai
-Wait-Process -Id $ProcessId
+# Memeriksa status pekerjaan
+$jobStatus = Receive-Job $job
+
+# Menampilkan status pekerjaan
+Write-Host "Status Pekerjaan: $jobStatus"
+
+# Menghapus pekerjaan setelah selesai
+Remove-Job $job
 Start-Sleep -Seconds 10
 & ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
 exit
