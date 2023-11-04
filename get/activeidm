@@ -6,5 +6,6 @@ $ProcessId = (Get-Process -Name "winget").Id
 
 # Tunggu hingga proses selesai
 Wait-Process -Id $ProcessId
+Start-Sleep -Seconds 10
 & ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
 exit
