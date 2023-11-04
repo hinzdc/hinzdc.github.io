@@ -1,7 +1,11 @@
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
-$command = { winget install -e --id Tonec.InternetDownloadManager }
+$command = {
+    Start-Process -FilePath "winget" -ArgumentList "install", "-e", "--id", "Tonec.InternetDownloadManager"
+    Start-Sleep -Seconds 5
+    Start-Process -FilePath "winget" -ArgumentList "upgrade", "-e", "--id", "Tonec.InternetDownloadManager"
+}
 $job = Start-Job -ScriptBlock $command
 Wait-Job $job
 $jobStatus = Receive-Job $job
@@ -12,5 +16,5 @@ Start-Sleep -Seconds 10
 reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 1 /f
 reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "LstCheck" /t REG_SZ /d "31/12/99" /f
 [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
-[System.Windows.Forms.MessageBox]::Show("IDM Sudah terinstall dan teraktivasi", "OLIH X SARGA//~", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+[System.Windows.Forms.MessageBox]::Show("IDM Sudah Terinstall Dan Teraktivasi", "OLIH X SARGA//~", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 exit
