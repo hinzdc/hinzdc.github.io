@@ -1,5 +1,6 @@
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+
 # Membuat pekerjaan (job) untuk menjalankan winget
 $command = { winget install -e --id Tonec.InternetDownloadManager }
 $job = Start-Job -ScriptBlock $command
@@ -17,4 +18,6 @@ Write-Host "Status Pekerjaan: $jobStatus"
 Remove-Job $job
 Start-Sleep -Seconds 10
 & ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
+reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 1 /f
+reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "LstCheck" /t REG_SZ /d "31/12/99" /f
 exit
