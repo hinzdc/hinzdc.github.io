@@ -4,13 +4,13 @@
 $command = {
     Start-Process -FilePath "winget" -ArgumentList "install", "-e", "--id", "Tonec.InternetDownloadManager"
     Start-Sleep -Seconds 5
-    Start-Process -FilePath "winget" -ArgumentList "upgrade", "-e", "--id", "Tonec.InternetDownloadManager"
 }
 $job = Start-Job -ScriptBlock $command
 Wait-Job $job
 $jobStatus = Receive-Job $job
 Write-Host "Status: $jobStatus"
 Remove-Job $job
+Start-Process -FilePath "winget" -ArgumentList "upgrade", "-e", "--id", "Tonec.InternetDownloadManager"
 Start-Sleep -Seconds 10
 & ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
 reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 1 /f
