@@ -1,6 +1,6 @@
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName PresentationFramework
 cls
 # Tentukan URL unduhan IDM
 $idmDownloadUrl = "https://www.internetdownloadmanager.com/download.html"
@@ -56,5 +56,5 @@ Start-Sleep -Seconds 5
 reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 1 /f
 reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "LstCheck" /t REG_SZ /d "31/12/99" /f
 
-[void] [System.Windows.Forms.MessageBox]::Show("IDM Sudah Terinstall Dan Teraktivasi. Harap untuk tidak melakukan update pada IDM..", "OLIH X SARGA//~", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+[System.Windows.Forms.MessageBox]::Show("IDM Sudah Terinstall Dan Teraktivasi. Harap untuk tidak melakukan update pada IDM..", "OLIH X SARGA//~", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 exit
