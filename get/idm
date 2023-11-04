@@ -1,12 +1,31 @@
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
-$command = { Start-Process -FilePath "winget" -ArgumentList "install", "-e", "--id", "Tonec.InternetDownloadManager" }
-$job = Start-Job -ScriptBlock $command
-Wait-Job $job
-$jobStatus = Receive-Job $job
-Write-Host "Status: $jobStatus"
-Remove-Job $job
+# Tentukan URL unduhan IDM
+$idmDownloadUrl = "https://www.internetdownloadmanager.com/download.html"
+
+# Unduh halaman unduhan IDM
+Write-Host "Mengunduh halaman unduhan IDM..."
+$pageContent = Invoke-WebRequest -Uri $idmDownloadUrl
+
+# Temukan tautan unduhan dari halaman
+$downloadLink = $pageContent.Links | Where-Object { $_.Href -like "*idman*"} | Select-Object -First 1
+
+# Unduh file IDM
+$idmInstallerUrl = $downloadLink.Href
+$downloadPath = "$env:USERPROFILE\Downloads\IDMInstaller.exe"
+Write-Host "Mengunduh file instalasi IDM..."
+Invoke-WebRequest -Uri $idmInstallerUrl -OutFile $downloadPath
+
+# Jalankan installer IDM
+Write-Host "Menjalankan installer IDM..."
+Start-Process -FilePath $downloadPath -ArgumentList "/skipdlgs" -Wait
+
+# Hapus file installer setelah instalasi selesai (opsional)
+Write-Host "Instalasi IDM selesai."
+Remove-Item -Path $downloadPath
+
+Write-Host "Start Activation IDM."
 Start-Sleep -Seconds 10
 & ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
 reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 1 /f
