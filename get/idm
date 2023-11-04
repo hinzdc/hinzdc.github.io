@@ -15,7 +15,7 @@ Write-Host "            IDM DOWNLOAD + ACTIVATION            " -BackgroundColor 
 Write-Host "                    HINZDC.XYZ                   " -BackgroundColor DarkRed -ForegroundColor White
 Write-Host "                                                 " -BackgroundColor DarkRed
 Write-Host "-----------------------------------------"
-Write-Host "Mengunduh halaman unduhan IDM..."
+Write-Host " Mengunduh halaman unduhan IDM..."
 Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
@@ -27,24 +27,27 @@ $downloadLink = $pageContent.Links | Where-Object { $_.Href -like "*idman*"} | S
 # Unduh file IDM
 $idmInstallerUrl = $downloadLink.Href
 $downloadPath = "$env:USERPROFILE\Downloads\IDMInstaller.exe"
-Write-Host "Mengunduh file instalasi IDM..."
+Write-Host " Mengunduh file instalasi IDM..."
 Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
 Invoke-WebRequest -Uri $idmInstallerUrl -OutFile $downloadPath
 
 # Jalankan installer IDM
-Write-Host "Menjalankan installer IDM..."
+Write-Host " Menjalankan installer IDM..."
 Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
+Stop-Process -Name "IDMan" | Out-Null
 Start-Process -FilePath $downloadPath -ArgumentList "/skipdlgs" -Wait
 
 # Hapus file installer setelah instalasi selesai (opsional)
-Write-Host "Instalasi IDM selesai."
+Write-Host " Instalasi IDM selesai."
+Write-Host "-----------------------------------------"
 Remove-Item -Path $downloadPath
-
-Write-Host "Start Activation IDM."
+Write-Host ""
+Write-Host ""
+Write-Host " Start Activation IDM."
 Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
