@@ -5,15 +5,15 @@ $appxApps = @(
   "mcmilk.7zip-zstd",
   "NSIS.NSIS",
   "Google.Chrome",
-  "AIMP.AIMP --force",
-  "AngusJohnson.ResourceHacker --force",
+  "AIMP.AIMP",
+  "AngusJohnson.ResourceHacker",
   "AutoIt.AutoIt",
-  "VideoLAN.VLC --force"
+  "VideoLAN.VLC"
 )
 # Loop melalui daftar aplikasi dan hapus mereka satu per satu
 foreach ($app in $appxApps) {
     Write-Host "Menginstall Aplikasi: $app"
-    winget install -e --id $app --accept-package-agreements --accept-source-agreements
+    winget install -e --id $app --force --accept-package-agreements --accept-source-agreements
 }
 
 # Menampilkan pesan setelah selesai
