@@ -1,8 +1,13 @@
-
-# Baca daftar aplikasi dari file "list.txt"
+# Privilege Escalation
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"cd '$pwd'; & '$PSCommandPath';`"";
+    exit;
+}
+cls
 $appxApps = @(
 
     "Clipchamp.Clipchamp",
+    "Microsoft.Microsoft3DViewer",
     "Microsoft.549981C3F5F10",
     "Microsoft.BingNews",
     "Microsoft.BingWeather",
@@ -46,13 +51,20 @@ $appxApps = @(
     #"Microsoft.ZuneMusic",
     #"Microsoft.ZuneVideo",
     "MicrosoftCorporationII.MicrosoftFamily",
-    "MicrosoftCorporationII.QuickAssist"
+    "MicrosoftCorporationII.QuickAssist",
+    "Microsoft.Messaging",
+    "Microsoft.OneConnect",
+    "Microsoft.SkypeApp",
+    "Microsoft.Wallet",
+    "Microsoft.MixedReality.Portal",
+    "Microsoft.Wallet",
+    "Microsoft.Office.OneNote",
     #"MicrosoftWindows.Client.WebExperience"
 )
 # Loop melalui daftar aplikasi dan hapus mereka satu per satu
 foreach ($app in $appxApps) {
     Write-Host "Menghapus aplikasi: $app"
-    Get-AppxPackage -Name $app | Remove-AppxPackage
+    Get-AppxPackage -AllUsers -Name $app | Remove-AppxPackage
 }
 
 # Menampilkan pesan setelah selesai
