@@ -5,9 +5,10 @@ $appxApps = @(
   "mcmilk.7zip-zstd",
   "NSIS.NSIS",
   "Google.Chrome",
-  "AIMP.AIMP",
-  "AngusJohnson.ResourceHacker",
-  "AutoIt.AutoIt"
+  "AIMP.AIMP --force",
+  "AngusJohnson.ResourceHacker --force",
+  "AutoIt.AutoIt",
+  "VideoLAN.VLC --force"
 )
 # Loop melalui daftar aplikasi dan hapus mereka satu per satu
 foreach ($app in $appxApps) {
@@ -16,5 +17,5 @@ foreach ($app in $appxApps) {
 }
 
 # Menampilkan pesan setelah selesai
-Write-Host ""
+Write-Host "---------------------------------------------"
 Write-Host -fore green "Proses Instal aplikasi selesai."
