@@ -59,7 +59,7 @@ $appxApps = @(
     "Microsoft.MixedReality.Portal",
     "Microsoft.Wallet",
     "Microsoft.Office.OneNote",
-    #"MicrosoftWindows.Client.WebExperience"
+    "MicrosoftWindows.Client.WebExperience"
 )
 # Loop melalui daftar aplikasi dan hapus mereka satu per satu
 foreach ($app in $appxApps) {
