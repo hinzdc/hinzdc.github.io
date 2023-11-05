@@ -37,11 +37,8 @@ Write-Host " Menjalankan installer IDM..."
 Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
-try {
-    Stop-Process -Name IDMan.exe
-} catch {
-    Write-Host ""
-}
+
+cmd /c "set idmcheck=tasklist /fi ""imagename eq idman.exe"" | findstr /i ""idman.exe"" >nul" ; if ($env:idmcheck) { taskkill /f /im idman.exe }
 
 Start-Process -FilePath $downloadPath -ArgumentList "/skipdlgs" -Wait
 
