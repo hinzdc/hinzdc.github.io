@@ -46,7 +46,7 @@ $appxApps = @(
     #"Microsoft.ZuneMusic",
     #"Microsoft.ZuneVideo",
     "MicrosoftCorporationII.MicrosoftFamily",
-    "MicrosoftCorporationII.QuickAssist",
+    "MicrosoftCorporationII.QuickAssist"
     #"MicrosoftWindows.Client.WebExperience"
 )
 # Loop melalui daftar aplikasi dan hapus mereka satu per satu
