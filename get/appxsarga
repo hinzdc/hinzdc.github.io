@@ -1,0 +1,21 @@
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
+
+cls
+$appxApps = @(
+  "mcmilk.7zip-zstd",
+  "RARLab.WinRAR",
+  "NSIS.NSIS",
+  "Google.Chrome",
+  "AIMP.AIMP",
+  "AngusJohnson.ResourceHacker",
+  "AutoIt.AutoIt"
+)
+# Loop melalui daftar aplikasi dan hapus mereka satu per satu
+foreach ($app in $appxApps) {
+    Write-Host "Menginstall Aplikasi: $app"
+    winget install -e --id $app --accept-package-agreements --accept-source-agreements
+}
+
+# Menampilkan pesan setelah selesai
+Write-Host ""
+Write-Host -fore green "Proses Instal aplikasi selesai."
