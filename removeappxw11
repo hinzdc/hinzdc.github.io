@@ -68,5 +68,6 @@ foreach ($app in $appxApps) {
 }
 
 # Menampilkan pesan setelah selesai
-Write-Host "Proses penghapusan aplikasi selesai."
+Write-Host ""
+Write-Host -fore green "Proses penghapusan aplikasi selesai."
 
