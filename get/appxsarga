@@ -3,7 +3,6 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 cls
 $appxApps = @(
   "mcmilk.7zip-zstd",
-  "RARLab.WinRAR",
   "NSIS.NSIS",
   "Google.Chrome",
   "AIMP.AIMP",
