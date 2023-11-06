@@ -30,7 +30,7 @@ Write-Host " Mengunduh file instalasi IDM..."
 Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
-Invoke-WebRequest -Uri $idmInstallerUrl -OutFile $downloadPath
+Invoke-WebRequest $idmInstallerUrl -OutFile $downloadPath
 
 # Jalankan installer IDM
 Write-Host " Menjalankan installer IDM..."
