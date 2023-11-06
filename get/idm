@@ -9,7 +9,7 @@ Clear-Host
 Write-Host ""
 Write-Host "                INDOJAVA                 " -BackgroundColor White -ForegroundColor Black
 Write-Host "      ISTANA BEC LANTAI 1 BLOK D07       " -BackgroundColor White -ForegroundColor Black
-Write-Host ""
+Write-Host "                                         " -BackgroundColor Blue -ForegroundColor White
 Write-Host "                                         " -BackgroundColor DarkRed
 Write-Host "        IDM DOWNLOAD + ACTIVATION        " -BackgroundColor DarkRed -ForegroundColor White
 Write-Host "                HINZDC.XYZ               " -BackgroundColor DarkRed -ForegroundColor White
@@ -59,14 +59,12 @@ Write-Host " Start Activation IDM"
 $ActScript = {
     $scriptFromURL = [ScriptBlock]::Create((irm https://massgrave.dev/ias))
     & $scriptFromURL /act
+    return
 }
-
-& $actScript
-$regScript = {
-    reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 0 /f
-    reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "LstCheck" /t REG_SZ /d "31/12/99" /f
-}
-& $regScript
+# Mengatur nilai DWORD
+Set-ItemProperty -Path "HKCU:\Software\DownloadManager" -Name "TipStartUp" -Value 0
+# Mengatur nilai REG_SZ
+Set-ItemProperty -Path "HKCU:\Software\DownloadManager" -Name "LstCheck" -Value "31/12/99"
 
 # Tampilkan pesan popup bahwa IDM telah terinstal dan teraktivasi
 $wshell = New-Object -ComObject Wscript.Shell
