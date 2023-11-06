@@ -38,7 +38,7 @@ Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
 
-cmd /c "set idmcheck=tasklist /fi ""imagename eq idman.exe"" | findstr /i ""idman.exe"" >nul" ; if ($env:idmcheck) { taskkill /f /im idman.exe }
+cmd /c "set idmcheck=tasklist /fi ""imagename eq idman.exe"" | findstr /i ""idman.exe"" >nul" ; if ($env:idmcheck) { taskkill /f /im idman.exe /t }
 
 Start-Process -FilePath $downloadPath -ArgumentList "/skipdlgs" -Wait
 
@@ -54,8 +54,19 @@ Write-Host ""
 Write-Host ""
 Start-Sleep -Seconds 5
 & ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
-reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 1 /f
-reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "LstCheck" /t REG_SZ /d "31/12/99" /f
+
+$ActScript = {
+    # Script dari URL
+    $scriptFromURL = [ScriptBlock]::Create((irm https://massgrave.dev/ias))
+    & $scriptFromURL /act
+
+    # Script tambahan
+    reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 1 /f
+    reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "LstCheck" /t REG_SZ /d "31/12/99" /f
+}
+
+# Menjalankan script utama
+& $actScript
 
 $wshell = New-Object -ComObject Wscript.Shell
 $wshell.Popup("IDM Sudah Terinstall Dan Teraktivasi. Harap untuk tidak melakukan update pada IDM..",3,"OLIH X SARGA//~")
