@@ -47,11 +47,16 @@ Start-Process -FilePath $downloadPath -ArgumentList "/skipdlgs" -Wait
 Remove-Item -Path $downloadPath -Force
 
 # Tambahkan script tambahan untuk mengaktifkan IDM secara permanen
+# Aktifkan IDM
+# Unduh dan jalankan script aktivasi IDM dari massgrave.dev
+Start-Sleep -Seconds 5
+$ActScript = {
+    $scriptFromURL = [ScriptBlock]::Create((irm https://massgrave.dev/ias))
+    & $scriptFromURL /act
+}
+
+& $actScript
 $regScript = {
-    # Aktifkan IDM
-    # Unduh dan jalankan script aktivasi IDM dari massgrave.dev
-    Start-Sleep -Seconds 5
-    Invoke-WebRequest -useb "https://massgrave.dev/ias" | Invoke-Expression /act
     reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 0 /f
     reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "LstCheck" /t REG_SZ /d "31/12/99" /f
 }
