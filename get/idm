@@ -33,21 +33,21 @@ Invoke-WebRequest -useb $idmInstallerUrl -OutFile $downloadPath
 $idmRunning = Get-Process -name IDMan
 if ($idmRunning) {
     Write-Host "-----------------------------------------"
-    Write-Host " Stop Process IDMan"
+    Write-Host " Stop Process IDMan..."
     Stop-Process -Name IDMan -Force
 } else {
     Write-Host "-----------------------------------------"
-    Write-Host " IDM is not currently running."
+    Write-Host " IDM is not currently running..."
 }
 
 # Jalankan installer IDM dengan argumen /skipdlgs untuk melewati dialog
 Write-Host "-----------------------------------------"
-Write-Host " Start Installer IDM.."
+Write-Host " Start Installer IDM..."
 Start-Process -FilePath $downloadPath -ArgumentList "/skipdlgs" -Wait
 
 # Hapus file installer setelah instalasi selesai (opsional)
 Write-Host "-----------------------------------------"
-Write-Host " Remove File Installer"
+Write-Host " Remove File Installer..."
 Remove-Item -Path $downloadPath -Force
 
 # Tambahkan script tambahan untuk mengaktifkan IDM secara permanen
@@ -55,10 +55,11 @@ Remove-Item -Path $downloadPath -Force
 # Unduh dan jalankan script aktivasi IDM dari massgrave.dev
 Start-Sleep -Seconds 5
 Write-Host "-----------------------------------------"
-Write-Host " Start Activation IDM"
+Write-Host " Start Activation IDM..."
 $ActScript = {
     $scriptFromURL = [ScriptBlock]::Create((irm https://massgrave.dev/ias))
     & $scriptFromURL /act
+    Write-Host " DONE.."
     return
 }
 # Mengatur nilai DWORD
