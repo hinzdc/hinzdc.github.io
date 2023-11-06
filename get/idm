@@ -1,10 +1,11 @@
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-cls
+
 # Tentukan URL unduhan IDM
 $idmDownloadUrl = "https://www.internetdownloadmanager.com/download.html"
 
 # Unduh halaman unduhan IDM
+Clear-Host
 Write-Host ""
 Write-Host ""
 Write-Host ""
@@ -18,10 +19,10 @@ Write-Host " Mengunduh halaman unduhan IDM..."
 Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
-$pageContent = Invoke-WebRequest -useb $idmDownloadUrl
+$pageContent = Invoke-WebRequest -uri $idmDownloadUrl
 
 # Temukan tautan unduhan dari halaman
-$downloadLink = $pageContent.Links | Where-Object { $_.Href -like "*idman*"} | Select-Object -First 1
+$downloadLink = $pageContent.Links | Where-Object { $_.Href -like "*idman*" } | Select-Object -First 1
 
 # Unduh file IDM
 $idmInstallerUrl = $downloadLink.Href
@@ -30,44 +31,37 @@ Write-Host " Mengunduh file instalasi IDM..."
 Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
-Invoke-WebRequest -useb $idmInstallerUrl -OutFile $downloadPath
+Invoke-WebRequest -uri $idmInstallerUrl -OutFile $downloadPath
 
 # Jalankan installer IDM
-Write-Host " Menjalankan installer IDM..."
-Write-Host "-----------------------------------------"
-Write-Host ""
-Write-Host ""
+# Hentikan proses idman.exe jika sedang berjalan
+$idmRunning = Get-Process -name idman.exe
+if ($idmRunning) {
+    Stop-Process -Name idman.exe
+}
 
-cmd /c "set idmcheck=tasklist /fi ""imagename eq idman.exe"" | findstr /i ""idman.exe"" >nul" ; if ($env:idmcheck) { taskkill /f /im idman.exe /t }
-
+# Jalankan installer IDM dengan argumen /skipdlgs untuk melewati dialog
 Start-Process -FilePath $downloadPath -ArgumentList "/skipdlgs" -Wait
 
 # Hapus file installer setelah instalasi selesai (opsional)
-Write-Host " Instalasi IDM selesai."
-Write-Host "-----------------------------------------"
-Remove-Item -Path $downloadPath
-Write-Host ""
-Write-Host ""
-Write-Host " Start Activation IDM."
-Write-Host "-----------------------------------------"
-Write-Host ""
-Write-Host ""
+Remove-Item -Path $downloadPath -Force
+
+# Aktifkan IDM
+# Unduh dan jalankan script aktivasi IDM dari massgrave.dev
 Start-Sleep -Seconds 5
-& ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
+Invoke-WebRequest -uri "https://massgrave.dev/ias" | Invoke-Expression /act
 
-$ActScript = {
-    # Script dari URL
-    $scriptFromURL = [ScriptBlock]::Create((irm https://massgrave.dev/ias))
-    & $scriptFromURL /act
-
-    # Script tambahan
+# Tambahkan script tambahan untuk mengaktifkan IDM secara permanen
+$actScript = {
     reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "TipStartUp" /t REG_DWORD /d 1 /f
     reg add "HKEY_CURRENT_USER\Software\DownloadManager" /v "LstCheck" /t REG_SZ /d "31/12/99" /f
 }
 
-# Menjalankan script utama
+# Jalankan script utama
 & $actScript
 
+# Tampilkan pesan popup bahwa IDM telah terinstal dan teraktivasi
 $wshell = New-Object -ComObject Wscript.Shell
 $wshell.Popup("IDM Sudah Terinstall Dan Teraktivasi. Harap untuk tidak melakukan update pada IDM..",15,"OLIH X SARGA//~")
+
 exit
