@@ -18,7 +18,7 @@ Write-Host " Mengunduh halaman unduhan IDM..."
 Write-Host "-----------------------------------------"
 Write-Host ""
 Write-Host ""
-$pageContent = Invoke-WebRequest -Uri $idmDownloadUrl
+$pageContent = Invoke-WebRequest $idmDownloadUrl
 
 # Temukan tautan unduhan dari halaman
 $downloadLink = $pageContent.Links | Where-Object { $_.Href -like "*idman*"} | Select-Object -First 1
