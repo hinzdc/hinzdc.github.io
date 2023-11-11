@@ -61,6 +61,7 @@ $ActScript = {
     $scriptFromURL = [ScriptBlock]::Create((irm https://massgrave.dev/ias))
     & $scriptFromURL /act
     Write-Host " DONE.."
+    return
 }
 & $ActScript
 # Mengatur nilai DWORD
