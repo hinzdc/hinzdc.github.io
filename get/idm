@@ -34,7 +34,7 @@ $idmRunning = Get-Process -name IDMan
 if ($idmRunning) {
     Write-Host "-----------------------------------------"
     Write-Host " Stop Process IDMan..."
-    Stop-Process -Name IDMan -Force
+    Stop-Process -Name IDMan -Force | Out-Nul
 } else {
     Write-Host "-----------------------------------------"
     Write-Host " IDM is not currently running..."
