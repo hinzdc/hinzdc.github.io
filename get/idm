@@ -62,6 +62,7 @@ $ActScript = {
     & $scriptFromURL /act
     Write-Host " DONE.."
 }
+& $ActScript
 # Mengatur nilai DWORD
 Set-ItemProperty -Path "HKCU:\Software\DownloadManager" -Name "TipStartUp" -Value 0
 # Mengatur nilai REG_SZ
