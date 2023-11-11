@@ -58,8 +58,7 @@ Write-Host "-----------------------------------------"
 
 $ActScript = {
     Write-Host " Start Activation IDM..."
-    $scriptFromURL = [ScriptBlock]::Create((irm https://massgrave.dev/ias))
-    & $scriptFromURL /act
+    & [ScriptBlock]::Create((irm https://massgrave.dev/ias)) /act
     Write-Host " DONE.."
     return
 }
