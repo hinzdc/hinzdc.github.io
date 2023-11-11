@@ -55,12 +55,12 @@ Remove-Item -Path $downloadPath -Force
 # Unduh dan jalankan script aktivasi IDM dari massgrave.dev
 Start-Sleep -Seconds 5
 Write-Host "-----------------------------------------"
-Write-Host " Start Activation IDM..."
+
 $ActScript = {
+    Write-Host " Start Activation IDM..."
     $scriptFromURL = [ScriptBlock]::Create((irm https://massgrave.dev/ias))
     & $scriptFromURL /act
     Write-Host " DONE.."
-    return
 }
 # Mengatur nilai DWORD
 Set-ItemProperty -Path "HKCU:\Software\DownloadManager" -Name "TipStartUp" -Value 0
