@@ -9,7 +9,7 @@ Clear-Host
 Write-Host ""
 Write-Host "                INDOJAVA                 " -BackgroundColor White -ForegroundColor Black
 Write-Host "      ISTANA BEC LANTAI 1 BLOK D07       " -BackgroundColor White -ForegroundColor Black
-Write-Host "                                         " -BackgroundColor Blue -ForegroundColor White
+Write-Host "                                         "
 Write-Host "                                         " -BackgroundColor DarkRed
 Write-Host "        IDM DOWNLOAD + ACTIVATION        " -BackgroundColor DarkRed -ForegroundColor White
 Write-Host "                HINZDC.XYZ               " -BackgroundColor DarkRed -ForegroundColor White
@@ -55,14 +55,10 @@ Remove-Item -Path $downloadPath -Force
 # Unduh dan jalankan script aktivasi IDM dari massgrave.dev
 Start-Sleep -Seconds 5
 Write-Host "-----------------------------------------"
+Write-Host " Start Activation IDM..."
+& [ScriptBlock]::Create((irm https://massgrave.dev/ias)) /act
+Write-Host " DONE.."
 
-$ActScript = {
-    Write-Host " Start Activation IDM..."
-    & [ScriptBlock]::Create((irm https://massgrave.dev/ias)) /act
-    Write-Host " DONE.."
-    return
-}
-& $ActScript
 # Mengatur nilai DWORD
 Set-ItemProperty -Path "HKCU:\Software\DownloadManager" -Name "TipStartUp" -Value 0
 # Mengatur nilai REG_SZ
