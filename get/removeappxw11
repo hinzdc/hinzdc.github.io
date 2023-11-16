@@ -25,7 +25,7 @@ $appxApps = @(
     "Microsoft.PowerAutomateDesktop",
     #"Microsoft.RawImageExtension",
     "Microsoft.ScreenSketch",
-    "Microsoft.SecHealthUI",
+    #"Microsoft.SecHealthUI",
     "Microsoft.StorePurchaseApp",
     "Microsoft.Todos",
     #"Microsoft.VP9VideoExtensions",
@@ -40,7 +40,7 @@ $appxApps = @(
     "Microsoft.WindowsMaps",
     #"Microsoft.WindowsNotepad",
     "Microsoft.WindowsSoundRecorder",
-    "Microsoft.WindowsStore",
+    #"Microsoft.WindowsStore",
     "Microsoft.WindowsTerminal",
     "Microsoft.Xbox.TCUI",
     "Microsoft.XboxGameOverlay",
@@ -59,7 +59,8 @@ $appxApps = @(
     "Microsoft.MixedReality.Portal",
     "Microsoft.Wallet",
     "Microsoft.Office.OneNote",
-    "MicrosoftWindows.Client.WebExperience"
+    "MicrosoftWindows.Client.WebExperience",
+    "*linkedin*"
 )
 # Loop melalui daftar aplikasi dan hapus mereka satu per satu
 foreach ($app in $appxApps) {
