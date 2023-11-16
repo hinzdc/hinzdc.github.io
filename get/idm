@@ -55,17 +55,13 @@ Remove-Item -Path $downloadPath -Force
 # Unduh dan jalankan script aktivasi IDM dari massgrave.dev
 Start-Sleep -Seconds 5
 Write-Host "-----------------------------------------"
-$ActScript = {
-    Write-Host " Start Activation IDM..."
-    & ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
-    Write-Host " DONE.."
-    # Mengatur nilai DWORD
-    Set-ItemProperty -Path "HKCU:\Software\DownloadManager" -Name "TipStartUp" -Value 0
-    # Mengatur nilai REG_SZ
-    Set-ItemProperty -Path "HKCU:\Software\DownloadManager" -Name "LstCheck" -Value "31/12/99"
-    return
-}
-& $ActScript
+Write-Host " Start Activation IDM..."
+& ([ScriptBlock]::Create((irm https://massgrave.dev/ias))) /act
+Write-Host " DONE.."
+# Mengatur nilai DWORD
+Set-ItemProperty -Path "HKCU:\Software\DownloadManager" -Name "TipStartUp" -Value 0
+# Mengatur nilai REG_SZ
+Set-ItemProperty -Path "HKCU:\Software\DownloadManager" -Name "LstCheck" -Value "31/12/99"
 
 # Tampilkan pesan popup bahwa IDM telah terinstal dan teraktivasi
 $wshell = New-Object -ComObject Wscript.Shell
