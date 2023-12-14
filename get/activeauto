@@ -2,14 +2,16 @@
 Clear-Host
 Write-Host "                                         " -BackgroundColor DarkRed
 Write-Host "                INDOJAVA                 " -BackgroundColor DarkRed -ForegroundColor White
-Write-Host "      ISTANA BEC LANTAI 1 BLOK D07       " -BackgroundColor DarkRed
+Write-Host "      ISTANA BEC LANTAI 1 BLOK D07       " -BackgroundColor DarkRed -ForegroundColor White
 Write-Host "                                         " -BackgroundColor DarkRed
 Write-Host "                                         " -BackgroundColor White
 Write-Host "  ACTIVATION WINDOWS + OFFICE PERMANENT  " -BackgroundColor White -ForegroundColor Black
 Write-Host "                HINZDC.XYZ               " -BackgroundColor White -ForegroundColor Black
 Write-Host "                                         " -BackgroundColor White
 & ([ScriptBlock]::Create((irm https://massgrave.dev/get))) /HWID /Ohook
-Write-Host " Activasi Windows Dan Office Sudah Selesai.." -ForegroundColor Green
+Write-Host ""
+Write-Host ""
+Write-Host "Activasi Windows Dan Office Sudah Selesai." -ForegroundColor Green
 Write-Host ""
 Write-Host ""
 Write-Host ""
