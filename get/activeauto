@@ -1,4 +1,12 @@
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-reg add "HKLM\SOFTWARE\Policies\Microsoft\office\16.0\common\officeupdate" /f /v EnableAutomaticUpdates /t REG_DWORD /d 0
-cls
+Clear-Host
+Write-Host ""
+Write-Host "                INDOJAVA                 " -BackgroundColor White -ForegroundColor Black
+Write-Host "      ISTANA BEC LANTAI 1 BLOK D07       " -BackgroundColor White -ForegroundColor Black
+Write-Host "                                         "
+Write-Host "                                         " -BackgroundColor DarkRed
+Write-Host "  ACTIVATION WINDOWS + OFFICE PERMANENT  " -BackgroundColor DarkRed -ForegroundColor White
+Write-Host "                HINZDC.XYZ               " -BackgroundColor DarkRed -ForegroundColor White
+Write-Host "                                         " -BackgroundColor DarkRed
 & ([ScriptBlock]::Create((irm https://massgrave.dev/get))) /HWID /Ohook
+Write-Host " Activasi Selesai.." -ForegroundColor Green
