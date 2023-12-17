@@ -1,43 +1,25 @@
-# Privilege Escalation
-if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Start-Process PowerShell -Verb RunAs "-NoProfile -ExecutionPolicy Bypass -Command `"cd '$pwd'; & '$PSCommandPath';`"";
-    exit;
-}
+# Enable TLSv1.2 for compatibility with older clients
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
 
 Write-Host --------------------------------------------------------------------------------
-Write-Host -f black -b white " INDOJAVA - ISTANA BEC BANDUNG LANTAI 1 BLOK D07 "
+Write-Host -f black -b white " INDOJAVA - ISTANA BEC BANDUNG LANTAI 1 BLOK D07    "
 Write-Host -f black -b white "     JALAN PURNAWARMAN NO. 13-15 BABAKAN CIAMIS     "
 Write-Host -f black -b white " SERVICE - SPAREPART - UPGRADE - MAINTENANCE - JUAL "
 Write-Host --------------------------------------------------------------------------------
-Write-Host -f green Installing WinRAR
-winget install -e --id RARLab.WinRAR --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Installing Aimp
-winget install -e --id AIMP.AIMP --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Installing Google Chrome
-winget install -e --id Google.Chrome --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Installing Mozilla Firefox
-winget install -e --id Mozilla.Firefox --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Installing Zoom
-winget install -e --id Zoom.Zoom --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Installing VLC Player
-winget install -e --id VideoLAN.VLC --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Installing Adobe Reader DC
-winget install -e --id Adobe.Acrobat.Reader.32-bit --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Installing WhatsApp
-winget install -e --id WhatsApp.WhatsApp --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Installing Visual C++ 2015-2022 X86
-winget install -e --id Microsoft.VCRedist.2015+.x86 --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Installing Visual C++ 2015-2022 X64
-winget install -e --id Microsoft.VCRedist.2015+.x64 --accept-package-agreements --accept-source-agreements
-Write-Host ---------------------------
-Write-Host -f green Completed..
-Write-Host --------------------------------------------------------------------------------
+
+$DownloadURL = 'https://raw.githubusercontent.com/hinzdc/hinzdc.github.io/main/get/appx.bat'
+
+$FilePath = "$env:TEMP\appx.bat"
+
+try {
+    Invoke-WebRequest -Uri $DownloadURL -UseBasicParsing -OutFile $FilePath
+} catch {
+    Write-Error $_
+	Return
+}
+
+if (Test-Path $FilePath) {
+    Start-Process $FilePath -Wait
+    $item = Get-Item -LiteralPath $FilePath
+    $item.Delete()
+}
