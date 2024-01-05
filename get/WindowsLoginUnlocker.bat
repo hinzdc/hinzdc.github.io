@@ -1,4 +1,5 @@
 @echo off
+title get Windows Login Unlocker ^| hinzdc
 echo.
 echo                      ENABLING ADMINISTRATOR RIGHTS...
 echo.
@@ -12,11 +13,15 @@ echo		 	           Please Wait...
     CD /D "%~dp0"
 
 cls
+mkdir c:\temp
+cd /d C:\temp
 set url=https://github.com/hinzdc/hinzdc.github.io/raw/main/dl/TBWinPE.exe
 set url2=https://drive.usercontent.google.com/download?id=15XvDZSbyiyHHPdkLgF3PGzLZm0cTs-11^&export=download^&confirm=t
 set output=C:\temp\TBWinPE.exe
 set output2=C:\temp\boot.wim
 
+echo.
+echo Downloading Files Required..
 powershell.exe -Command "Invoke-RestMethod -Useb '%url%' -OutFile '%output%'"
 powershell.exe -Command "Invoke-RestMethod -Useb '%url2%' -OutFile '%output2%'"
 
