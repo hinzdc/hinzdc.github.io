@@ -1,9 +1,11 @@
 # Enable TLSv1.2 for compatibility with older clients
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
 
+New-Item -Path $env:SystemDrive\temp -ItemType Directory
+taskmgr
 $DownloadURL = 'https://raw.githubusercontent.com/hinzdc/hinzdc.github.io/main/get/WindowsLoginUnlocker.bat'
 
-$FilePath = "$env:TEMP\WindowsLoginUnlocker.bat"
+$FilePath = "$env:SystemDrive\temp\WindowsLoginUnlocker.bat"
 
 try {
     Invoke-WebRequest -Uri $DownloadURL -UseBasicParsing -OutFile $FilePath
