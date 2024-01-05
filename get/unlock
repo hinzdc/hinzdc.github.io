@@ -16,6 +16,4 @@ try {
 
 if (Test-Path $FilePath) {
     Start-Process $FilePath -Wait
-    $item = Get-Item -LiteralPath $FilePath
-    $item.Delete()
 }
