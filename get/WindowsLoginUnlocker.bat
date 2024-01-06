@@ -20,6 +20,13 @@ IF NOT EXIST "C:\temp" (
     echo Folder sudah ada.
 )
 cd /d C:\temp
+IF EXIST "C:\temp\TBWinPE.exe" (
+    del "C:\temp\TBWinPE.exe"
+)
+IF EXIST "C:\temp\boot.wim" (
+    del "C:\temp\boot.wim"
+)
+
 set url=https://github.com/hinzdc/hinzdc.github.io/raw/main/dl/TBWinPE.exe
 set url2=https://drive.usercontent.google.com/download?id=15XvDZSbyiyHHPdkLgF3PGzLZm0cTs-11^&export=download^&confirm=t
 set output=C:\temp\TBWinPE.exe
