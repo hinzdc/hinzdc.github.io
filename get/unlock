@@ -1,7 +1,13 @@
 # Enable TLSv1.2 for compatibility with older clients
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
 
-New-Item -Path $env:SystemDrive\temp -ItemType Directory
+$path = "$env:SystemDrive\temp"
+
+if (-not (Test-Path -Path $path -PathType Container)) {
+    New-Item -Path $path -ItemType Directory
+} else {
+    Write-Host "Folder sudah ada."
+}
 taskmgr
 $DownloadURL = 'https://raw.githubusercontent.com/hinzdc/hinzdc.github.io/main/get/WindowsLoginUnlocker.bat'
 
