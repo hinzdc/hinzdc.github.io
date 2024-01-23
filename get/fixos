@@ -49,11 +49,12 @@ Write-Host "--------------------------------------------------------------------
 Invoke-Expression "DISM /Online /Cleanup-Image /Restorehealth"
 Write-Host "------------------------------------------------------------------------------------"
 
-# Run sfc /scannow to scan and repair system files
+<# Run sfc /scannow to scan and repair system files
 Write-Host " 2ND SCAN CORRRUPTED FILES SYSTEM..." -ForegroundColor Green
 Write-Host "------------------------------------------------------------------------------------"
 Invoke-Expression "sfc /scannow"
 Write-Host "------------------------------------------------------------------------------------"
+#>
 
 Write-Host " The DISM and sfc scans have been completed. Please restart Windows and check the results." -ForegroundColor Green
 Write-Host ""
