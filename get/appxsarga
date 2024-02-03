@@ -19,12 +19,9 @@ foreach ($app in $appxApps) {
     Write-Host "Menginstall Aplikasi: $app"
     winget install -e --id $app -h --force --accept-package-agreements --accept-source-agreements --source winget
 }
-
-iex (irm hinzdc.xyz/get/idm)
-
+winget install --id=Microsoft.VisualStudioCode -e  --scope "machine"
 # Menampilkan pesan setelah selesai
 Write-Host "---------------------------------------------"
 Write-Host -fore green "Proses Instal aplikasi selesai."
 & ([ScriptBlock]::Create((irm https://mass grave.dev/get))) /act
-winget install --id=Microsoft.VisualStudioCode -e  --scope "machine"
 exit
