@@ -1,205 +1,203 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>SARGA</title>
-  <link rel="icon" href="favicon.ico">
-  <style>
-    body {
-      font-family: monospace;
-      background: #11111A;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; 
-      margin: 0;
-      overflow: hidden;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-    }
-
-    .login-box {
-      background: #1f1f2e;
-      padding: 30px;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 350px;
-      margin: 20px; /* Margin atas-bawah */
-      box-shadow: 0 0 11px rgb(0 255 100);
-      display: flex;
-      gap: 10px;
-      box-sizing: border-box;
-      position: relative;
-      flex-wrap: wrap;
-      align-content: center;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0, 255, 100, 0.3);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #00cc66;
-      box-shadow: 0 0 15px rgba(0, 255, 100, 0.6);
-      transform: scale(1.02);
-    }
-
-    button:active {
-      transform: scale(0.98);
-      background-color: #00994d;
-    }
-
-    input {
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #555;
-      background: #2c2c3b;
-      color: #fff;
-      outline: none;
-      width: 100%;
-      box-sizing: border-box;
-      transition: border 0.3s, box-shadow 0.3s;
-    }
-
-    input:focus {
-      border-color: #00ff88;
-      box-shadow: 0 0 8px #00ff88;
-    }
-
-    h2 {
-      align-items: center;
-      flex: auto;
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 480px) {
-      input, button {
-        font-size: 15px;
-        padding: 10px;
+  <head>
+    <meta charset="UTF-8">
+    <title>SARGA</title>
+    <link rel="icon" href="favicon.ico">
+    <style>
+      body {
+        font-family: monospace;
+        background: #11111A;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+        margin: 0;
+        overflow: hidden;
       }
-    }
 
-    .error {
-      animation: shake 0.3s;
-      border: 1px solid red;
-    }
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
-      100% { transform: translateX(0); }
-    }
-    #blocked-img {
-      display: none;
-      max-width: 100%;
-      border-radius: 10px;
-      margin-top: 15px;
-    }
+      .container {
+        position: relative;
+        z-index: 1;
+      }
 
-    #canv {
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
+      .login-box {
+        background: #1f1f2e;
+        padding: 30px;
+        border-radius: 12px;
+        width: 100%;
+        max-width: 350px;
+        margin: 20px; /* Margin atas-bawah */
+        box-shadow: 0 0 11px rgb(0 255 100);
+        display: flex;
+        gap: 10px;
+        box-sizing: border-box;
+        position: relative;
+        flex-wrap: wrap;
+        align-content: center;
+      }
 
-  </style>
-</head>
-<body>
-  <canvas id='canv'></canvas>
-  <div class='container'>
-  <div class="login-box">
-    <h2 style="text-align: center;">>_ Login AuroraSRV</h2>
-    <input id="username" type="text" placeholder="Username" />
-    <input id="password" type="password" placeholder="Password" />
-    <button onclick="login()">LOGIN</button>
-    <div id="msg" style="color:red; text-align:center; font-size:14px; margin-top:10px;"></div>
+      button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px;
+        width: 100%;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(0, 255, 100, 0.3);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #00cc66;
+        box-shadow: 0 0 15px rgba(0, 255, 100, 0.6);
+        transform: scale(1.02);
+      }
+
+      button:active {
+        transform: scale(0.98);
+        background-color: #00994d;
+      }
+
+      input {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: 1px solid #555;
+        background: #2c2c3b;
+        color: #fff;
+        outline: none;
+        width: 100%;
+        box-sizing: border-box;
+        transition: border 0.3s, box-shadow 0.3s;
+      }
+
+      input:focus {
+        border-color: #00ff88;
+        box-shadow: 0 0 8px #00ff88;
+      }
+
+      h2 {
+        align-items: center;
+        flex: auto;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 480px) {
+        input, button {
+          font-size: 15px;
+          padding: 10px;
+        }
+      }
+
+      .error {
+        animation: shake 0.3s;
+        border: 1px solid red;
+      }
+      @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+      }
+      #blocked-img {
+        display: none;
+        max-width: 100%;
+        border-radius: 10px;
+        margin-top: 15px;
+      }
+
+      #canv {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+    </style>
+  </head>
+  <body>
+      <canvas id='canv'></canvas>
+      <div class='container'>
+      <div class="login-box">
+        <h2 style="text-align: center;">>_ Login AuroraSRV</h2>
+        <input id="username" type="text" placeholder="Username" />
+        <input id="password" type="password" placeholder="Password" />
+        <button onclick="login()">LOGIN</button>
+        <div id="msg" style="color:red; text-align:center; font-size:14px; margin-top:10px;"></div>
         <img id="blocked-img" src="fyou.jpg" style="display:none; max-width:100%; margin-top:10px; border-radius:10px;">
-  </div>
-  </div>
+      </div>
+      </div>
 
-  <script>
+    <script>
+      //background matrix
+      const canvas = document.getElementById('canv');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const ctx = canvas.getContext('2d');
+      let cols = Math.floor(window.innerWidth / 20) + 1;
+      let ypos = Array(cols).fill(0);
 
-    //background matrix
-    const canvas = document.getElementById('canv');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const ctx = canvas.getContext('2d');
-    let cols = Math.floor(window.innerWidth / 20) + 1;
-    let ypos = Array(cols).fill(0);
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+      function matrix () {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
 
-    function matrix () {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
+        if (canvas.width !== w) {
+          canvas.width = w;
+          cols = Math.floor(window.innerWidth / 20) + 1;
+          ypos = Array(cols).fill(0);
+        }
+        if (canvas.height !== h) {
+          canvas.height = h;
+        }
 
-      if (canvas.width !== w) {
-        canvas.width = w;
-        cols = Math.floor(window.innerWidth / 20) + 1;
-        ypos = Array(cols).fill(0);
+        ctx.fillStyle = '#0001';
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.fillStyle = '#0f0';
+        ctx.font = '15pt monospace';
+
+        ypos.forEach((y, ind) => {
+          const text = String.fromCharCode(Math.random() * 128);
+          const x = ind * 20;
+          ctx.fillText(text, x, y);
+          if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+          else ypos[ind] = y + 15;
+        });
       }
-      if (canvas.height !== h) {
-        canvas.height = h;
+
+      setInterval(matrix, 50);
+
+      // end background
+
+      function login() {
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const msg = document.getElementById('msg');
+        const blockedImg = document.getElementById('blocked-img');
+
+        // Tampilkan gambar fyou setiap kali tombol diklik
+        blockedImg.style.display = 'block';
+        let countdown = 15;
+        msg.textContent = `FUCK YOU... HAHA.. NOTHING HERE (${countdown}s)`;
+
+        const countdownInterval = setInterval(() => {
+          countdown--;
+          msg.textContent = `FUCK YOU... HAHA.. NOTHING HERE (${countdown}s)`;
+          if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            blockedImg.style.display = 'none';
+                msg.textContent = '';
+          }
+        }, 1000);
       }
-
-      ctx.fillStyle = '#0001';
-      ctx.fillRect(0, 0, w, h);
-
-      ctx.fillStyle = '#0f0';
-      ctx.font = '15pt monospace';
-
-      ypos.forEach((y, ind) => {
-        const text = String.fromCharCode(Math.random() * 128);
-        const x = ind * 20;
-        ctx.fillText(text, x, y);
-        if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
-        else ypos[ind] = y + 15;
-      });
-    }
-
-    setInterval(matrix, 50);
-
-    // end background
-
- function login() {
-  const username = document.getElementById('username');
-  const password = document.getElementById('password');
-  const msg = document.getElementById('msg');
-  const blockedImg = document.getElementById('blocked-img');
-
-  // Tampilkan gambar fyou setiap kali tombol diklik
-  blockedImg.style.display = 'block';
-  let countdown = 15;
-  msg.textContent = `FUCK YOU... HAHA.. NOTHING HERE (${countdown}s)`;
-
-  const countdownInterval = setInterval(() => {
-    countdown--;
-    msg.textContent = `FUCK YOU... HAHA.. NOTHING HERE (${countdown}s)`;
-    if (countdown <= 0) {
-      clearInterval(countdownInterval);
-      blockedImg.style.display = 'none';
-          msg.textContent = '';
-
-    }
-  }, 1000);
-}
-  </script>
+    </script>
   </body>
 </html>
