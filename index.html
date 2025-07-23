@@ -1,33 +1,212 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N9JDDRP7');</script>
-                <!-- End Google Tag Manager -->
-		<title>Nothing</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="./assets/css/style.css">
-		<link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset200802.css">
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
-		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-	</head>
-		<body>
-			<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9JDDRP7"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-			<!-- End Google Tag Manager (noscript) -->
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
-			<script src="https://github.com/postcss/autoprefixer/blob/main/lib/autoprefixer.js"></script>
-			<script src="https://codepen.io/seanfree/pen/LvrJWz.js"></script>
-			<script src="./assets/js/script.js"></script>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>SARGA</title>
+  <link rel="icon" href="favicon.ico">
+  <style>
+/* Atur tinggi body agar full screen & tanpa scroll */
+    body {
+      font-family: monospace;
+      background: #11111A;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Fix tinggi layar */
+      margin: 0;
+      overflow: hidden; /* Cegah scroll */
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Login box dengan margin & max width */
+    .login-box {
+      background: #1f1f2e;
+      padding: 30px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 350px;
+      margin: 20px; /* Margin atas-bawah */
+      box-shadow: 0 0 11px rgb(0 255 100);
+      display: flex;
+      gap: 10px;
+      box-sizing: border-box;
+      position: relative;
+      flex-wrap: wrap;
+      align-content: center;
+    }
+
+    /* Tombol "Masuk" */
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 255, 100, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00cc66;
+      box-shadow: 0 0 15px rgba(0, 255, 100, 0.6);
+      transform: scale(1.02);
+    }
+
+    button:active {
+      transform: scale(0.98);
+      background-color: #00994d;
+    }
+
+    /* Input Username & Password */
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background: #2c2c3b;
+      color: #fff;
+      outline: none;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus {
+      border-color: #00ff88;
+      box-shadow: 0 0 8px #00ff88;
+    }
+
+    h2 {
+      align-items: center;
+      flex: auto;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 480px) {
+      input, button {
+        font-size: 15px;
+        padding: 10px;
+      }
+    }
+
+    .error {
+      animation: shake 0.3s;
+      border: 1px solid red;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+    #blocked-img {
+      display: none;
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    #canv {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <canvas id='canv'></canvas>
+  <div class='container'>
+  <div class="login-box">
+    <h2 style="text-align: center;">>_ Login AuroraSRV</h2>
+    <input id="username" type="text" placeholder="Username" />
+    <input id="password" type="password" placeholder="Password" />
+    <button onclick="login()">LOGIN</button>
+    <div id="msg" style="color:red; text-align:center; font-size:14px; margin-top:10px;"></div>
+        <img id="blocked-img" src="fyou.jpg" style="display:none; max-width:100%; margin-top:10px; border-radius:10px;">
+  </div>
+  </div>
+
+  <script>
+
+    //background matrix
+    const canvas = document.getElementById('canv');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    let cols = Math.floor(window.innerWidth / 20) + 1;
+    let ypos = Array(cols).fill(0);
+
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    function matrix () {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      if (canvas.width !== w) {
+        canvas.width = w;
+        cols = Math.floor(window.innerWidth / 20) + 1;
+        ypos = Array(cols).fill(0);
+      }
+      if (canvas.height !== h) {
+        canvas.height = h;
+      }
+
+      ctx.fillStyle = '#0001';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#0f0';
+      ctx.font = '15pt monospace';
+
+      ypos.forEach((y, ind) => {
+        const text = String.fromCharCode(Math.random() * 128);
+        const x = ind * 20;
+        ctx.fillText(text, x, y);
+        if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+        else ypos[ind] = y + 15;
+      });
+    }
+
+    setInterval(matrix, 50);
+
+    // end background
+
+ function login() {
+  const username = document.getElementById('username');
+  const password = document.getElementById('password');
+  const msg = document.getElementById('msg');
+  const blockedImg = document.getElementById('blocked-img');
+
+  // Tampilkan gambar fyou setiap kali tombol diklik
+  blockedImg.style.display = 'block';
+  let countdown = 15;
+  msg.textContent = `FUCK YOU... HAHA.. NOTHING HERE (${countdown}s)`;
+
+  const countdownInterval = setInterval(() => {
+    countdown--;
+    msg.textContent = `FUCK YOU... HAHA.. NOTHING HERE (${countdown}s)`;
+    if (countdown <= 0) {
+      clearInterval(countdownInterval);
+      blockedImg.style.display = 'none';
+          msg.textContent = '';
+
+    }
+  }, 1000);
+}
+
+
+  </script>
 			<!-- Cloudflare Web Analytics -->
 			<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7ced4f6b0b5948d6ad1df55808e28ffe"}'></script>
 			<!-- End Cloudflare Web Analytics -->
